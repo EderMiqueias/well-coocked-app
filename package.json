@@ -1,6 +1,11 @@
 {
-  "name": "cra-ts-alias",
-  "version": "0.1.0",
+  "name": "well-coocked-app",
+  "version": "1.0.0",
+  "description": "Well Cooked is a game to learn the basics of programming logic.",
+  "main": "index.js",
+  "repository": "git@github.com:EderMiqueias/well-coocked.git",
+  "author": "EderMiqueias <edermiqueiasrodrigues@gmail.com>",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
