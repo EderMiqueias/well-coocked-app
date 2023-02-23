@@ -5,9 +5,10 @@ import { HomePage, SobrePage } from "@/pages";
 
 const Routes = createBrowserRouter(
     createRoutesFromElements(
-        <Route path="/" element={<HomePage />}>
-            <Route path="sobre" element={<SobrePage />} />
-        </Route>
+        <>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/sobre" element={<SobrePage />} />
+        </>
     )
 );
 
