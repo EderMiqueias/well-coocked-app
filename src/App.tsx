@@ -1,25 +1,13 @@
 import React from 'react';
-import { Logo } from '@/assets';
-import './App.css';
-import { Button } from '@/components';
+import '@/assets/styles/App.css';
+import Routes from '@/routes';
+import { RouterProvider } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={Logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <Button text='Click' />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <RouterProvider router={Routes} />
       </header>
     </div>
   );
