@@ -2,7 +2,7 @@ import React from 'react';
 import '@/assets/styles/App.css';
 
 const SobrePage = () => {
-  return (<></>);
+  return (<p>asasas</p>);
 }
 
 export { SobrePage };
