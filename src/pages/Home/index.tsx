@@ -1,5 +1,4 @@
 import React from 'react';
-import '@/assets/styles/App.css';
 import { Button, Anchor } from '@/components';
 import { MenuContainer, MenuTitle } from './styles';
 
@@ -7,7 +6,7 @@ const HomePage = () => {
     return (
         <MenuContainer>
             <MenuTitle>Menu Principal</MenuTitle>
-            <Anchor url="/sobre" >
+            <Anchor url="/niveis" >
                 <Button text='Niveis' type='menu' />
             </Anchor>
             <Anchor url="/sobre">
