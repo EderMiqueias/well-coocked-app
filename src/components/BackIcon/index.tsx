@@ -1,6 +1,7 @@
 import React from "react";
 
-import { BackIcon, Image } from "@/assets";
+import { BackIcon } from "@/assets";
+import { Image } from "@/common";
 
 import { Anchor } from "../Anchor";
 import { Container } from "./styles";

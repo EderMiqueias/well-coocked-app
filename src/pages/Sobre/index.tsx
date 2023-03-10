@@ -1,6 +1,7 @@
 import React from 'react';
 import { BackIconComponent } from '@/components';
-import { Content, SobreContainer, Title } from './styles';
+import { SobreContainer } from './styles';
+import { Content, Title } from '@/common';
 
 const SobrePage = () => {
   return (
