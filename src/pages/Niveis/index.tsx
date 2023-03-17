@@ -20,3 +20,4 @@ const NiveisPage = () => {
 }
 
 export { NiveisPage };
+export * from './Nivel1';
