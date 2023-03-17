@@ -1,18 +1,21 @@
 import React from 'react';
 
-import { Button, Anchor } from '@/components';
+import { CardNivel, BackIconComponent } from '@/components';
 import { Title } from '@/common';
 
-import { NiveisContainer } from './styles';
+import { NiveisContainer, Container } from './styles';
 
 const NiveisPage = () => {
     return (
-        <NiveisContainer>
+        <Container>
+            <BackIconComponent backTo="/" />
             <Title>Niveis Disponiveis</Title>
-            <Anchor url="/niveis/" >
-                <Button text='Niveis' type='menu' />
-            </Anchor>
-        </NiveisContainer>
+            <NiveisContainer>
+                <CardNivel disabled={false} nivelUrl="/niveis/1" nivelName='Nivel 1' />
+                <CardNivel disabled={true} nivelUrl="/niveis/2" nivelName='Nivel 2' />
+                <CardNivel disabled={true} nivelUrl="/niveis/3" nivelName='Nivel 3' />
+            </NiveisContainer>
+        </Container>
     );
 }
 

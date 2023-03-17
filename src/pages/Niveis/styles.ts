@@ -1,9 +1,15 @@
 import styled from 'styled-components';
 import { MenuContainer } from '../Home/styles';
 
-export const NiveisContainer = styled(MenuContainer)`
+export const Container = styled(MenuContainer)`
   color: white;
-  max-width: 600px;
+  width: 70%;
 `;
 
+export const NiveisContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
 
