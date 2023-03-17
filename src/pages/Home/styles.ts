@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const MenuContainer = styled.div`
-  display: grid;
+  display: flex;
+  flex-direction: column;
   background-color: #E9967A;
   padding: 5%;
   min-height: 300px;
-  max-width: 600px;
   justify-items: center;
-  border-radius: 10%;
+  border-radius: 24px;
   color: white;
 `;
 
