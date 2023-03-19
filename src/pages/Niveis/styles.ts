@@ -29,12 +29,6 @@ export const FirstRowContainer = styled.div`
   height: 67%;
 `;
 
-export const JogoContainer = styled.div`
-  width: 85%;
-  height: 100%;
-  border-right: 3px solid #7f7f7f;
-  border-top-left-radius: 15px;
-`;
 
 export const IndicativosContainer = styled.div`
   width: 15%;
