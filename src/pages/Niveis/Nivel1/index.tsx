@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { GameSpace } from '@/components';
+import { BackIconComponent, GameSpace } from '@/components';
 import { BlockState, GameSpaceState, ImmobileItems, MobileItems } from '@/types';
 import { getNivelInitialState, updateBlock } from '@/utils';
 
@@ -35,13 +35,16 @@ const Nivel1 = () => {
   const [gameState, setGameState] = useState<GameSpaceState>(getNivel1InitialState());
 
   return (
-      <NivelContainer>
-        <FirstRowContainer>
-          <GameSpace state={gameState}></GameSpace>
-          <IndicativosContainer></IndicativosContainer>
-        </FirstRowContainer>
-        <OperacoesContainer></OperacoesContainer>
-      </NivelContainer>
+      <>
+        <NivelContainer>
+          <BackIconComponent backTo="/niveis" />
+          <FirstRowContainer>
+            <GameSpace state={gameState}></GameSpace>
+            <IndicativosContainer></IndicativosContainer>
+          </FirstRowContainer>
+          <OperacoesContainer></OperacoesContainer>
+        </NivelContainer>
+      </>
   );
 }
 

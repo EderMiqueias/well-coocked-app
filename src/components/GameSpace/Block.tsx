@@ -1,9 +1,11 @@
 import React from "react";
 
-import { Beans, CheffDroid, CuttingBoard, Dish, Lettuce, Massa, Meat, Pan, Potato, Rice, Stove, Tomato } from "@/assets";
-import { BlockState, Coords, ImmobileItems, MobileItems } from "@/types";
+import { CheffDroid } from "@/assets";
+import { BlockState, Coords, MobileItems } from "@/types";
 
-import { BlockContainer, SVGItem } from "./styles";
+import { BlockContainer, CharacterContainer, ItemsContainer } from "./styles";
+import { SVGItem } from "../Items/styles";
+import { MobileItem, ImmobileItem } from "../Items";
 
 type BlockProps = {
   coords: Coords;
@@ -13,36 +15,6 @@ type BlockProps = {
   colorFase?: boolean;
 };
 
-type ImmobileIcons = Record<ImmobileItems, JSX.Element>;
-type MobileIcons = Record<MobileItems, JSX.Element>;
-
-const getImmobileItemIcon = (item?: ImmobileItems) => {
-  if (item === undefined) return <></>;
-
-  const itemsIcons : ImmobileIcons = {
-    [ImmobileItems.cuttingBoard]: <SVGItem src={CuttingBoard} />,
-    [ImmobileItems.stove]: <SVGItem src={Stove} />
-  }
-  return itemsIcons[item]
-};
-
-const getMobileItemIcon = (item?: MobileItems) => {
-  if (item === undefined) return <></>;
-
-  const itemsIcons : MobileIcons = {
-    [MobileItems.bean]: <SVGItem src={Beans} />,
-    [MobileItems.dish]: <SVGItem src={Dish} />,
-    [MobileItems.lettuce]: <SVGItem src={Lettuce} />,
-    [MobileItems.massa]: <SVGItem src={Massa} />,
-    [MobileItems.meat]: <SVGItem src={Meat} />,
-    [MobileItems.pan]: <SVGItem src={Pan} />,
-    [MobileItems.potato]: <SVGItem src={Potato} />,
-    [MobileItems.rice]: <SVGItem src={Rice} />,
-    [MobileItems.tomato]: <SVGItem src={Tomato} />
-  }
-  return itemsIcons[item]
-};
-
 export const Block: React.FC<BlockProps> = ({
   coords,
   state,
@@ -50,11 +22,25 @@ export const Block: React.FC<BlockProps> = ({
   height = 128,
   colorFase = false
 }) => {
+  const isPan = state.mobileItem === MobileItems.pan;
   return (
     <BlockContainer colorFase={colorFase} width={width} height={height}>
-      {state.isMainCharacter && <SVGItem src={CheffDroid} />}
-      {getImmobileItemIcon(state.immobileItem)}
-      {getMobileItemIcon(state.mobileItem)}
+      {state.isMainCharacter && (
+        <CharacterContainer>
+          <SVGItem size={84} src={CheffDroid} />
+        </CharacterContainer>
+      )}
+      <ItemsContainer>
+        {(!isPan && state.mobileItem) && (
+          <MobileItem item={state.mobileItem} />
+        )}
+        {state.immobileItem && (
+          <ImmobileItem
+            item={state.immobileItem}
+            subItem={isPan ? state.mobileItem : undefined}
+          />
+        )}
+      </ItemsContainer>
     </BlockContainer>
   )
 }

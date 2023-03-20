@@ -20,16 +20,20 @@ export const BlockContainer = styled.div<BlockProps>`
   height: ${({height}) => height}px;
   min-width: ${({width}) => width}px;
   min-height: ${({height}) => height}px;
+  max-width: ${({width}) => width}px;
+  max-height: ${({height}) => height}px;
   background-color: ${({colorFase}) => colorFase ? ' #f5cba7 ' : ' #fae5d3 ' };
 `;
 
-interface SVGItemProps {
-  size?: number;
-}
-
-export const SVGItem = styled.img<SVGItemProps>`
-  width: ${({size}) => size ? `${size}px` : 'auto' };
-  height: ${({size}) => size ? `${size}px` : 'auto' };
+export const ItemsContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
 `;
 
-
+export const CharacterContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+`;

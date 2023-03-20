@@ -15,7 +15,6 @@ export const NiveisContainer = styled.div`
 
 export const NivelContainer = styled.div`
   display: block;
-  background-color: #F5F5F5;
   color: white;
   height: 768px;
   width: 1024px;
@@ -26,7 +25,7 @@ export const FirstRowContainer = styled.div`
   flex-direction: row;
   display: flex;
   width: 100%;
-  height: 67%;
+  height: 512px;
 `;
 
 
@@ -34,6 +33,7 @@ export const IndicativosContainer = styled.div`
   width: 15%;
   height: 100%;
   border-top-right-radius: 15px;
+  background-color: #F5F5F5;
 `;
 
 export const OperacoesContainer = styled.footer`
