@@ -29,4 +29,5 @@ export { default as RiceCooked } from './svg/rice-cooked.svg';
 export { default as Stove } from './svg/stove.svg';
 export { default as Tomato } from './svg/tomato.svg';
 export { default as TomatoCooked } from './svg/tomato-cooked.svg';
-export { default as WaitActyionIcon } from './svg/wait.svg';
+export { default as WaitActionIcon } from './svg/wait.svg';
+export { default as ArrowRightDirection } from './svg/direction-arrow-right.svg';

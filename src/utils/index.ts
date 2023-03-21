@@ -1,4 +1,4 @@
-import { BlockState, GameSpaceState } from "@/types";
+import { BlockState, GameSpaceState, IntructionQueueState } from "@/types";
 
 export const getVoidBlockState = (): BlockState => ({
   isMainCharacter: false,
@@ -25,3 +25,8 @@ export const updateBlock = (
   ): GameSpaceState => {
     return state[y][x] = newBlockState;
   };
+
+export const getInitialInstructionQueueState = () => ({
+  currentIntructionIndex: 0,
+  intructionQueue: []
+} as IntructionQueueState);
