@@ -1,7 +1,7 @@
 import React from "react";
 
 import { BackIcon } from "@/assets";
-import { Image } from "@/common";
+import { ImageIcon } from "@/common";
 
 import { Anchor } from "../Anchor";
 import { Container } from "./styles";
@@ -18,7 +18,7 @@ export const BackIconComponent: React.FC<ButtonProps> = ({
       <Anchor
         url={backTo}
       >
-        <Image
+        <ImageIcon
           src={BackIcon}
           width="50px"
           height="50px"
