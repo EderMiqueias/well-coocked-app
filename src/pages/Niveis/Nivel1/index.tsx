@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { BackIconComponent, GameSpace } from '@/components';
-import { BlockState, GameSpaceState, ImmobileItems, MobileItems } from '@/types';
-import { getNivelInitialState, updateBlock } from '@/utils';
+import { BackIconComponent, GameSpace, InstructionQueue } from '@/components';
+import { BlockState, GameSpaceState, ImmobileItems, IntructionQueueState, MobileItems } from '@/types';
+import { getInitialInstructionQueueState, getNivelInitialState, updateBlock } from '@/utils';
 
 import {
   NivelContainer,
@@ -33,6 +33,12 @@ const getNivel1InitialState = (): GameSpaceState => {
 
 const Nivel1 = () => {
   const [gameState, setGameState] = useState<GameSpaceState>(getNivel1InitialState());
+  const [instructionState, setInstructionState] = useState<IntructionQueueState>(getInitialInstructionQueueState());
+
+  useEffect(() => {
+    setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
+    setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
+  }, [])
 
   return (
       <>
@@ -42,7 +48,9 @@ const Nivel1 = () => {
             <GameSpace state={gameState}></GameSpace>
             <IndicativosContainer></IndicativosContainer>
           </FirstRowContainer>
-          <OperacoesContainer></OperacoesContainer>
+          <OperacoesContainer>
+            <InstructionQueue state={instructionState} />
+          </OperacoesContainer>
         </NivelContainer>
       </>
   );

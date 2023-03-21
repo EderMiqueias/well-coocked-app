@@ -16,7 +16,8 @@ export const NiveisContainer = styled.div`
 export const NivelContainer = styled.div`
   display: block;
   color: white;
-  height: 768px;
+  max-height: 768px;
+  background-color: #ca3433;
   width: 1024px;
   border-radius: 15px;
 `;
@@ -30,16 +31,18 @@ export const FirstRowContainer = styled.div`
 
 
 export const IndicativosContainer = styled.div`
-  width: 15%;
+  display: flex;
+  margin-bottom: 8px;
+  width: 154px;
   height: 100%;
-  border-top-right-radius: 15px;
-  background-color: #F5F5F5;
+  background-color: #E9967A;
 `;
 
-export const OperacoesContainer = styled.footer`
+export const OperacoesContainer = styled.div`
   width: 100%;
-  height: 33%;
+  height: 256px;
   background-color: #E9967A;
+  display: flex;
   align-self: flex-end;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;

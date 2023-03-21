@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const JogoContainer = styled.div`
   max-width: 85%;
   height: 100%;
-  border-right: 3px solid #7f7f7f;
   border-top-left-radius: 15px;
   display: flex;
   flex-wrap: wrap;
