@@ -32,10 +32,11 @@ export const FirstRowContainer = styled.div`
 
 export const IndicativosContainer = styled.div`
   display: flex;
-  margin-bottom: 8px;
   width: 154px;
   height: 100%;
   background-color: #E9967A;
+  align-items: flex-end;
+  justify-content: center;
 `;
 
 export const OperacoesContainer = styled.div`

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 
-import { BackIconComponent, GameSpace, InstructionButtons, InstructionQueue } from '@/components';
-import { BlockState, GameSpaceState, ImmobileItems, Instruction, IntructionQueueState, MobileItems } from '@/types';
-import { getInitialInstructionQueueState, getNivelInitialState, updateBlock } from '@/utils';
+import { BackIconComponent, Button, GameSpace, InstructionButtons, InstructionQueue } from '@/components';
+import { BlockState, Coords, GameSpaceState, ImmobileItems, Instruction, IntructionQueueState, MobileItems } from '@/types';
+import { getInitialInstructionQueueState, getNivelInitialState, moveCharacter, updateBlock } from '@/utils';
 
 import {
   NivelContainer,
@@ -32,9 +32,12 @@ const getNivel1InitialState = (): GameSpaceState => {
 };
 
 const Nivel1 = () => {
-  const [gameState, setGameState] = useState<GameSpaceState>(getNivel1InitialState());
+  const [gameState, setGameState] =
+    useState<GameSpaceState>(getNivel1InitialState());
   const [instructionState, setInstructionState] =
     useState<IntructionQueueState>(getInitialInstructionQueueState());
+  const [characterCoords, setCharacterCoords] =
+    useState<Coords>({ y: 2, x: 1});
 
   const addInstruction = (instruction: Instruction) => {
     setInstructionState(
@@ -45,9 +48,22 @@ const Nivel1 = () => {
     );
   };
 
+  const runInstruction = (instruction: Instruction) => {
+    const [newState, newCoords] =
+      moveCharacter(gameState, characterCoords, instruction);
+    setGameState({ ...newState });
+    setCharacterCoords({ ...newCoords })
+  };
+
+  const run = () => {
+    if (instructionState.intructionQueue.length > 0) {
+      instructionState.intructionQueue.forEach(runInstruction);
+    }
+  };
+
   useEffect(() => {
     setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
-    setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
+    // setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
   }, [])
 
   return (
@@ -56,7 +72,9 @@ const Nivel1 = () => {
           <BackIconComponent backTo="/niveis" />
           <FirstRowContainer>
             <GameSpace state={gameState}></GameSpace>
-            <IndicativosContainer></IndicativosContainer>
+            <IndicativosContainer>
+              <Button type="run" onPress={run} />
+            </IndicativosContainer>
           </FirstRowContainer>
           <OperacoesContainer>
             <InstructionQueue state={instructionState} />
