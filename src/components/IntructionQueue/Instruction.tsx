@@ -1,17 +1,18 @@
 import React from "react";
 
-import { ActionInstructionGroup, MovementIntructionGroup } from "@/types";
+import { Instruction } from "@/types";
 import { InstructionContainer, SVGItem, VoidInstruction } from "./styles";
 import { ArrowRightDirection } from "@/assets";
+import { InstructionButton } from "../InstructionsButtons/Button";
 
 type InstructionProps = {
   index: number;
-  instruction?: MovementIntructionGroup | ActionInstructionGroup;
+  instruction?: Instruction;
   isCurrentInstruction?: boolean;
   showRightArrow?: boolean;
 }
 
-export const Instruction: React.FC<InstructionProps> = ({
+export const InstructionQueueElement: React.FC<InstructionProps> = ({
   index,
   instruction,
   isCurrentInstruction,
@@ -20,7 +21,9 @@ export const Instruction: React.FC<InstructionProps> = ({
   return (
     <>
       <InstructionContainer highlight={isCurrentInstruction}>
-        {!instruction && (
+        {instruction ? (
+          <InstructionButton instruction={instruction} onPress={() => {}} />
+        ) : (
           <VoidInstruction key={index} />
         )}
       </InstructionContainer>

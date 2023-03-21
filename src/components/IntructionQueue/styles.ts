@@ -36,14 +36,6 @@ export const VoidInstruction = styled.div`
   background-color: rgba(100, 149, 237, 0.5);
 `;
 
-export const Title = styled.h2`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 28px;
-  color: #4D4D4D;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-`;
-
 export const SVGItem = styled.img`
   width: 30px;
   height: 30px;

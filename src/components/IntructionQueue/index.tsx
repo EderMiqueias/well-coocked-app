@@ -2,8 +2,9 @@ import React from "react";
 
 import { IntructionQueueState } from "@/types";
 
-import { QueueContainer, Title, Container } from "./styles";
-import { Instruction } from "./Instruction";
+import { QueueContainer, Container } from "./styles";
+import { InstructionQueueElement } from "./Instruction";
+import { HighlightTitle } from "@/common";
 
 type IntructionQueueProps = {
   state: IntructionQueueState
@@ -17,7 +18,7 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
   
     for (let i = 0; i < countInstructions; i++) {
       instructionsRow.push(
-          <Instruction
+          <InstructionQueueElement
             index={i}
             instruction={state.intructionQueue[i]}
             isCurrentInstruction={state.currentIntructionIndex === i}
@@ -31,7 +32,7 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
 
   return (
     <Container>
-      <Title>FILA DE INSTRUÇÕES</Title>
+      <HighlightTitle>FILA DE INSTRUÇÕES</HighlightTitle>
       <QueueContainer>
         {getInstructionsRow(12)}
       </QueueContainer>

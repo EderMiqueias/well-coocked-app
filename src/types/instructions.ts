@@ -11,6 +11,8 @@ export enum ActionInstructions {
   wait = 'wait'
 };
 
+export type Instruction = ActionInstructions | MovementInstructions;
+
 export type MovementIntructionGroup = {
   instruction: MovementInstructions;
   steps: number;
@@ -22,6 +24,6 @@ export type ActionInstructionGroup = {
 };
 
 export type IntructionQueueState = {
-  intructionQueue: (ActionInstructions & MovementInstructions)[];
+  intructionQueue: Instruction[];
   currentIntructionIndex: number;
 };
