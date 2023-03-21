@@ -44,7 +44,6 @@ export const ActionButtonsContainer = styled.div`
 
 export const ButtonTextContainer = styled.div`
   flex-direction: column;
-  margin-left: 12px;
 `;
 
 export const ButtonText = styled.p`
@@ -53,4 +52,5 @@ export const ButtonText = styled.p`
   font-size: 16px;
   line-height: 19px;
   color: #272727;
+  margin-left: 12px;
 `;
