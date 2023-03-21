@@ -2,13 +2,14 @@ import { ArrowBottom, ArrowLeft, ArrowRight, ArrowTop, GrabActionIcon, InteractA
 import { ImageIcon } from "@/common";
 import { ActionInstructions, Instruction, MovementInstructions } from "@/types";
 import React from "react";
-import { Button } from "./styles";
+import { Button, ButtonText, ButtonTextContainer } from "./styles";
 
 
 
 type InstructionButtonProps = {
   instruction: Instruction;
   onPress: () => void;
+  text?: string;
 }
 
 export const getInstructionIcon = (instruction: Instruction) => {
@@ -27,15 +28,21 @@ export const getInstructionIcon = (instruction: Instruction) => {
 
 export const InstructionButton: React.FC<InstructionButtonProps> = ({
   instruction,
-  onPress
+  onPress,
+  text
 }) => {
   return (
-    <Button onClick={onPress}>
-      <ImageIcon
-        src={getInstructionIcon(instruction)}
-        height="40px"
-        width="40px"
-      />
-    </Button>
+    <ButtonTextContainer>
+      <Button onClick={onPress}>
+        <ImageIcon
+          src={getInstructionIcon(instruction)}
+          height="40px"
+          width="40px"
+        />
+      </Button>
+      {text && (
+        <ButtonText>{text}</ButtonText>
+      )}
+    </ButtonTextContainer>
   )
 }

@@ -9,7 +9,7 @@ export const Button = styled.button`
 `;
 
 export const ButtonsContainer = styled.div`
-  width: 150px;
+  min-width: 170px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ export const MovementButtonsContainer = styled.div`
 
 export const Container = styled.div`
   flex-direction: column;
-  margin-left: 24px;
+  margin-left: 20px;
 `;
 
 export const Row = styled.div`
@@ -35,9 +35,22 @@ export const Row = styled.div`
 
 export const ActionButtonsContainer = styled.div`
   display: flex;
-  width: 180px;
+  /* width: 180px; */
   height: 100%;
-  margin-left: 50px;
+  margin-left: 12px;
   align-content: center;
   justify-content: space-between;
+`;
+
+export const ButtonTextContainer = styled.div`
+  flex-direction: column;
+  margin-left: 12px;
+`;
+
+export const ButtonText = styled.p`
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #272727;
 `;
