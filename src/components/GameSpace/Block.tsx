@@ -1,10 +1,8 @@
 import React from "react";
 
-import { CheffDroid } from "@/assets";
 import { BlockState, Coords, MobileItems } from "@/types";
 
-import { BlockContainer, CharacterContainer, ItemsContainer } from "./styles";
-import { SVGItem } from "../Items/styles";
+import { BlockContainer, ItemsContainer } from "./styles";
 import { MobileItem, ImmobileItem } from "../Items";
 
 type BlockProps = {
@@ -25,11 +23,6 @@ export const Block: React.FC<BlockProps> = ({
   const isPan = state.mobileItem === MobileItems.pan;
   return (
     <BlockContainer colorFase={colorFase} width={width} height={height}>
-      {state.isMainCharacter && (
-        <CharacterContainer>
-          <SVGItem size={84} src={CheffDroid} />
-        </CharacterContainer>
-      )}
       <ItemsContainer>
         {(!isPan && state.mobileItem) && (
           <MobileItem item={state.mobileItem} />

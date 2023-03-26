@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { BackIconComponent, Button, GameSpace, InstructionButtons, InstructionQueue } from '@/components';
+import { BackIconComponent, Button, Droid, GameSpace, InstructionButtons, InstructionQueue } from '@/components';
 import { BlockState, Coords, GameSpaceState, ImmobileItems, Instruction, IntructionQueueState, MobileItems } from '@/types';
 import { getInitialInstructionQueueState, getNivelInitialState, moveCharacter, updateBlock } from '@/utils';
 
@@ -62,7 +62,7 @@ const Nivel1 = () => {
   };
 
   useEffect(() => {
-    setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
+    // setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
     // setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
   }, [])
 
@@ -71,7 +71,9 @@ const Nivel1 = () => {
         <NivelContainer>
           <BackIconComponent backTo="/niveis" />
           <FirstRowContainer>
-            <GameSpace state={gameState}></GameSpace>
+            <GameSpace state={gameState}>
+              <Droid size={84} />
+            </GameSpace>
             <IndicativosContainer>
               <Button type="run" onPress={run} />
             </IndicativosContainer>

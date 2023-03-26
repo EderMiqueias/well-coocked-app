@@ -7,10 +7,12 @@ import { JogoContainer } from "./styles";
 
 type GameSpaceProps = {
   state: GameSpaceState;
+  children: React.ReactNode;
 };
 
 export const GameSpace: React.FC<GameSpaceProps> = ({
-  state
+  state,
+  children
 }) => {
   const getBlockRow = (coordY: number, colorFase: boolean, items: number) => {
     let atualColorFase = colorFase;
@@ -45,6 +47,7 @@ export const GameSpace: React.FC<GameSpaceProps> = ({
 
   return (
     <JogoContainer>
+      {children}
       {getBlockRows()}
     </JogoContainer>
   )
