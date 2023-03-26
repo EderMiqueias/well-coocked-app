@@ -9,7 +9,8 @@ export const Button = styled.button`
 `;
 
 export const ButtonsContainer = styled.div`
-  min-width: 170px;
+  min-width: 150px;
+  min-height: 150px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +20,7 @@ export const MovementButtonsContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: row;
-  justify-content: space-between
+  justify-content: space-between;
 `;
 
 export const Container = styled.div`
