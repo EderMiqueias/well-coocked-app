@@ -1,10 +1,10 @@
 import React from "react";
 
+import { BLOCK_HEIGHT, BLOCK_WIDTH } from "@/constants";
 import { BlockState, Coords, MobileItems } from "@/types";
 
-import { BlockContainer, ItemsContainer } from "./styles";
 import { MobileItem, ImmobileItem } from "../Items";
-import { BLOCK_HEIGHT, BLOCK_WIDTH } from "@/constants";
+import { BlockContainer, ItemsContainer } from "./styles";
 
 type BlockProps = {
   coords: Coords;

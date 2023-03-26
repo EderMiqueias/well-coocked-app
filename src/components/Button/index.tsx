@@ -1,6 +1,8 @@
+import React from "react";
+
 import { Play } from "@/assets";
 import { ImageIcon } from "@/common";
-import React from "react";
+
 import { MenuButton, RunButton } from "./styles";
 
 type TypeButton = "menu" | "run";
