@@ -7,3 +7,4 @@ export * from './Items';
 export * from './IntructionQueue';
 export * from './InstructionsButtons';
 export * from './MainCharacter';
+export * from './Indacatives';
