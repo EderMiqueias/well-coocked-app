@@ -1,14 +1,37 @@
 import React, { useEffect, useState } from 'react';
 
-import { BackIconComponent, Button, Droid, GameSpace, InstructionButtons, InstructionQueue } from '@/components';
-import { BlockState, Coords, GameSpaceState, ImmobileItems, Instruction, IntructionQueueState, MobileItems } from '@/types';
-import { getInitialInstructionQueueState, getNivelInitialState, moveCharacter, updateBlock } from '@/utils';
+import {
+  BackIconComponent,
+  Button,
+  Droid,
+  GameSpace,
+  Indicatives,
+  InstructionButtons,
+  InstructionQueue
+} from '@/components';
+import {
+  BlockState,
+  Coords,
+  Dishs,
+  GameSpaceState,
+  ImmobileItems,
+  Instruction,
+  IntructionQueueState,
+  MobileItems
+} from '@/types';
+import {
+  getInitialInstructionQueueState,
+  getNivelInitialState,
+  moveCharacter,
+  updateBlock
+} from '@/utils';
 
 import {
   NivelContainer,
   IndicativosContainer,
   OperacoesContainer,
-  FirstRowContainer
+  FirstRowContainer,
+  RunButtonContainer
 } from '../styles';
 
 const getNivel1InitialState = (): GameSpaceState => {
@@ -75,7 +98,10 @@ const Nivel1 = () => {
               <Droid size={84} />
             </GameSpace>
             <IndicativosContainer>
-              <Button type="run" onPress={run} />
+              <Indicatives dish={Dishs.baiao} secondsLeft={60} />
+              <RunButtonContainer>
+                <Button type="run" onPress={run} />
+              </RunButtonContainer>
             </IndicativosContainer>
           </FirstRowContainer>
           <OperacoesContainer>
