@@ -34,3 +34,4 @@ export { default as TomatoCooked } from './svg/tomato-cooked.svg';
 export { default as WaitActionIcon } from './svg/wait.svg';
 export { default as ArrowRightDirection } from './svg/direction-arrow-right.svg';
 export { default as Play } from './svg/play.svg';
+export { default as HourGlass } from './svg/hourglass.svg';

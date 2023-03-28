@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Clock, FoodIcon } from "@/assets";
+import { HourGlass, FoodIcon } from "@/assets";
 import { ImageIcon } from "@/common";
 import { DISHS } from "@/constants";
 import { Dishs, MobileItems } from "@/types";
@@ -25,7 +25,7 @@ export const Indicatives: React.FC<IndicativesProps> = ({
   return (
     <Container>
       <TimeContainer>
-        <ImageIcon height="auto" width="40px" src={Clock} />
+        <ImageIcon height="auto" width="40px" src={HourGlass} />
         <Time>{secondsLeft} S</Time>
       </TimeContainer>
       <DishName>{dish}</DishName>
