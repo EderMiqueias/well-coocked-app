@@ -48,11 +48,11 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
             onPress={() => addInstruction(ActionInstructions.grabRelease)}
             text="Pegar/Soltar"
           />
-          <InstructionButton
+          {/* <InstructionButton
             instruction={ActionInstructions.interact}
             onPress={() => addInstruction(ActionInstructions.interact)}
             text="Interagir"
-          />
+          /> */}
           <InstructionButton
             instruction={ActionInstructions.wait}
             onPress={() => addInstruction(ActionInstructions.wait)}
