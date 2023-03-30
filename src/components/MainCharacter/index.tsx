@@ -6,7 +6,6 @@ import { BLOCK_HEIGHT, BLOCK_WIDTH } from "@/constants";
 import { Coords } from "@/types";
 
 import { CheffDroidContainer, Position } from "./styles";
-import './animation.css';
 
 type CheffDroidProps = {
   size: number;
@@ -26,7 +25,8 @@ export const Droid: React.FC<CheffDroidProps> = ({
 }) => {
   const [finalPosition, setFinalPosition] =
     useState<Position>(getCharacterPosition(gameStateCoords));
-  const [initialPosition, setInitialPosition] = useState<Position>(finalPosition);
+  const [initialPosition, setInitialPosition] =
+    useState<Position>(finalPosition);
   const sizeInPixel = `${size}px`;
 
   useEffect(() => {

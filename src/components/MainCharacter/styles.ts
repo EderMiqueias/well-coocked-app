@@ -21,7 +21,7 @@ export const CheffDroidContainer = styled.div<CheffDroidProps>`
   height: 100px;
   width: 100px;
   left: ${({final}) => final.left}px;
-  top: 8px + ${({final}) => final.top}px;
+  top: ${({final}) => final.top}px;
   animation-name: ${(props) => animation(props)};
   animation-duration: 2s;
 `;
