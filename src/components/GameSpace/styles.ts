@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const JogoContainer = styled.div`
+  position: relative;
   max-width: 85%;
   height: 100%;
   border-top-left-radius: 15px;

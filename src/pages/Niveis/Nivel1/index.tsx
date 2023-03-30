@@ -95,10 +95,10 @@ const Nivel1 = () => {
           <BackIconComponent backTo="/niveis" />
           <FirstRowContainer>
             <GameSpace state={gameState}>
-              <Droid size={84} />
+              <Droid gameStateCoords={characterCoords} size={84} />
             </GameSpace>
             <IndicativosContainer>
-              <Indicatives dish={Dishs.baiao} secondsLeft={60} />
+              <Indicatives dish={Dishs.pure} secondsLeft={60} />
               <RunButtonContainer>
                 <Button type="run" onPress={run} />
               </RunButtonContainer>
