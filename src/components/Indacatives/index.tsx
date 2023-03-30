@@ -18,9 +18,11 @@ export const Indicatives: React.FC<IndicativesProps> = ({
   secondsLeft
 }) => {
   const getDishIngredients = (): MobileItems[] => DISHS[dish];
-  const getIngredientsIcons = () => getDishIngredients().map(
-    (item) => <MobileItem item={item} />
-  );
+  const getIngredientsIcons = () =>
+    getDishIngredients().map(
+      (item, index) =>
+        <MobileItem key={index} item={item} />
+    );
   
   return (
     <Container>

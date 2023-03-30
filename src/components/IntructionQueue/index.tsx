@@ -19,6 +19,7 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
     for (let i = 0; i < countInstructions; i++) {
       instructionsRow.push(
           <InstructionQueueElement
+            key={i}
             index={i}
             instruction={state.intructionQueue[i]}
             isCurrentInstruction={state.currentIntructionIndex === i}
