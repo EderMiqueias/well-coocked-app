@@ -2,6 +2,10 @@ export { default as Logo } from './svg/logo.svg';
 export { default as BackIcon } from './png/back-icon.png';
 export { default as Android1 } from './png/droid1.png';
 export { default as Android2 } from './png/droid2.png';
+export { default as CriticalIcon } from './png/critical.png';
+export { default as InterrogationIcon } from './png/interrogation.png';
+export { default as LateIcon } from './png/late.png';
+export { default as SuccessIcon } from './png/success.png';
 
 export { default as ArrowBottom } from './svg/arrow-bottom.svg';
 export { default as ArrowLeft } from './svg/arrow-left.svg';
