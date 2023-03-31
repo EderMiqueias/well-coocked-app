@@ -1,4 +1,4 @@
-import { BlockState, GameSpaceState, IntructionQueueState } from "@/types";
+import { BlockState, GameSpaceState, GameStates, IntructionQueueState } from "@/types";
 
 export const getVoidBlockState = (): BlockState => ({
   isMainCharacter: false,
@@ -6,8 +6,11 @@ export const getVoidBlockState = (): BlockState => ({
   mobileItem: undefined
 } as BlockState);
 
-export const getNivelInitialState = (yCount: number, xCount: number): GameSpaceState => {
-  let state: GameSpaceState = {};
+export const getNivelInitialState = (yCount: number, xCount: number, timeLeft?: number): GameSpaceState => {
+  let state: GameSpaceState = {
+    gameState: GameStates.started,
+    timeLeft: timeLeft || 60
+  };
   for (let y = 1; y <= yCount; y++) {
     state[y] = {};
     for (let x = 1; x <= xCount; x++) {

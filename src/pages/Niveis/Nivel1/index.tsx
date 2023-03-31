@@ -7,13 +7,15 @@ import {
   GameSpace,
   Indicatives,
   InstructionButtons,
-  InstructionQueue
+  InstructionQueue,
+  Modal
 } from '@/components';
 import {
   BlockState,
   Coords,
   Dishs,
   GameSpaceState,
+  GameStates,
   ImmobileItems,
   Instruction,
   IntructionQueueState,
@@ -35,7 +37,7 @@ import {
 } from '../styles';
 
 const getNivel1InitialState = (): GameSpaceState => {
-  let state = getNivelInitialState(4, 4);
+  let state = getNivelInitialState(4, 4, 30);
 
   updateBlock(state, 2, 1, {
     isMainCharacter: true
@@ -60,13 +62,18 @@ const Nivel1 = () => {
   const [instructionState, setInstructionState] =
     useState<IntructionQueueState>(getInitialInstructionQueueState());
   const [characterCoords, setCharacterCoords] =
-    useState<Coords>({ y: 2, x: 1});
+    useState<Coords>({ y: 2, x: 1 });
+
+  const restartGameSTate = () => {
+    setCharacterCoords({ y: 2, x: 1 });
+    setGameState(getNivel1InitialState())
+  };
 
   const addInstruction = (instruction: Instruction) => {
     setInstructionState(
       (oldValue) => ({
         ...oldValue,
-        intructionQueue: [ ...oldValue.intructionQueue, instruction ]
+        intructionQueue: [...oldValue.intructionQueue, instruction]
       })
     );
   };
@@ -85,31 +92,35 @@ const Nivel1 = () => {
   };
 
   useEffect(() => {
+    // setGameState((oldValue) => ({ ...oldValue, gameState: GameStates.completed }))
     // setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
     // setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
   }, [])
 
   return (
-      <>
-        <NivelContainer>
-          <BackIconComponent backTo="/niveis" />
-          <FirstRowContainer>
-            <GameSpace state={gameState}>
-              <Droid gameStateCoords={characterCoords} size={84} />
-            </GameSpace>
-            <IndicativosContainer>
-              <Indicatives dish={Dishs.pure} secondsLeft={60} />
-              <RunButtonContainer>
-                <Button type="run" onPress={run} />
-              </RunButtonContainer>
-            </IndicativosContainer>
-          </FirstRowContainer>
-          <OperacoesContainer>
-            <InstructionQueue state={instructionState} />
-            <InstructionButtons addInstruction={addInstruction} />
-          </OperacoesContainer>
-        </NivelContainer>
-      </>
+    <NivelContainer>
+      <Modal
+        gameState={gameState.gameState}
+        onClick={restartGameSTate}
+        timeLeft={gameState.timeLeft}
+      />
+      <BackIconComponent backTo="/niveis" />
+      <FirstRowContainer>
+        <GameSpace state={gameState}>
+          <Droid gameStateCoords={characterCoords} size={84} />
+        </GameSpace>
+        <IndicativosContainer>
+          <Indicatives dish={Dishs.pure} secondsLeft={gameState.timeLeft} />
+          <RunButtonContainer>
+            <Button type="run" onPress={run} />
+          </RunButtonContainer>
+        </IndicativosContainer>
+      </FirstRowContainer>
+      <OperacoesContainer>
+        <InstructionQueue state={instructionState} />
+        <InstructionButtons addInstruction={addInstruction} />
+      </OperacoesContainer>
+    </NivelContainer>
   );
 }
 

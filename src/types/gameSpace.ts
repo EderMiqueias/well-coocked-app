@@ -26,7 +26,17 @@ export type BlockState = {
   mobileItem?: MobileItems;
 };
 
+export enum GameStates {
+  started = 'started', // NIVEL INICIADO OU REINICIADO
+  completed = 'completed', // NIVEL CONCLUIDO
+  droidHitItsHead = 'droidHitItsHead', // AVANÇOU NUMA PAREDE
+  timeOver = 'timeOver', // ACABOU O TEMPO
+  fail = 'fail' // ANDOU DEMAIS E NÃO FEZ NADA
+};
+
 export type GameSpaceState = {
+  gameState: GameStates;
+  timeLeft: number;
   [y: number]: {
     [x: number]: BlockState;
   }

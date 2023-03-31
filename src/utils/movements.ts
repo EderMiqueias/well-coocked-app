@@ -1,4 +1,4 @@
-import { BlockState, Coords, GameSpaceState, Instruction, MovementInstructions } from "@/types";
+import { BlockState, Coords, GameSpaceState, GameStates, Instruction, MovementInstructions } from "@/types";
 
 export const updateBlock = (
   state: GameSpaceState,
@@ -6,7 +6,8 @@ export const updateBlock = (
   x: number,
   newBlockState: BlockState
 ): GameSpaceState => {
-  return state[y][x] = newBlockState;
+  state[y][x] = newBlockState;
+  return state;
 };
 
 export const moveCharacter = (
@@ -18,12 +19,11 @@ export const moveCharacter = (
 
   const newState = state;
   let newCoords: Coords = mainCharacterCoords;
-  newState[coords.y][coords.x].isMainCharacter = false;
 
   switch (instruction) {
     case MovementInstructions.bottom:
       newCoords = {
-        y: coords.y - 1,
+        y: coords.y + 1,
         x: coords.x
       };
       break;
@@ -41,11 +41,16 @@ export const moveCharacter = (
       break;
     case MovementInstructions.top:
       newCoords = {
-        y: coords.y + 1,
+        y: coords.y - 1,
         x: coords.x
       };
   }
-
-  newState[newCoords.y][newCoords.x].isMainCharacter = true;
+  try {
+    newState[newCoords.y][newCoords.x].isMainCharacter = true;
+    newState[coords.y][coords.x].isMainCharacter = false;
+  } catch {
+    newState.gameState = GameStates.droidHitItsHead;
+    newCoords = coords;
+  }
   return [newState, newCoords];
 };
