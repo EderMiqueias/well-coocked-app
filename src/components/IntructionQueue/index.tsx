@@ -7,27 +7,14 @@ import { InstructionQueueElement } from "./Instruction";
 import { HighlightTitle } from "@/common";
 
 type IntructionQueueProps = {
-  state: IntructionQueueState
+  state: IntructionQueueState;
+  removeInstruction: (index: number) => void;
 }
 
 export const InstructionQueue: React.FC<IntructionQueueProps> = ({
-  state
+  state,
+  removeInstruction
 }) => {
-  // const getInstructionsRow = (countInstructions: number) =>
-  //   state.intructionQueue.map((instruction) => (
-  //     <InstructionQueueElement
-  //       key={instruction.index}
-  //       index={instruction.index}
-  //       instruction={instruction.instruction}
-  //       isCurrentInstruction={state.currentIntructionIndex === instruction.index}
-  //       showRightArrow={
-  //         !(instruction.index + 1 === countInstructions
-  //           || instruction.index + 1 === countInstructions / 2
-  //         )
-  //       }
-  //     />
-  //   ))
-
   const getInstructionsRow = (countInstructions: number) => {
     const instructionsRow: React.ReactNode[] = [];
 
@@ -35,6 +22,7 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
       instructionsRow.push(
         <InstructionQueueElement
           key={i}
+          onClick={() => removeInstruction(state.intructionQueue[i]?.index)}
           index={state.intructionQueue[i]?.index}
           instruction={state.intructionQueue[i]?.instruction}
           isCurrentInstruction={state.currentIntructionIndex === i}

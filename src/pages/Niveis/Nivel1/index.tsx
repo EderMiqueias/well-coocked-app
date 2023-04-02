@@ -90,6 +90,14 @@ const Nivel1 = () => {
     );
   };
 
+  const removeInstruction = (index: number) =>
+    setInstructionState(
+      (oldValue) => ({
+        ...oldValue,
+        intructionQueue: oldValue.intructionQueue.filter((item) => item.index !== index)
+      })
+    );
+
   const runInstruction = (instruction?: IndexedInstruction) => {
     if (instruction) {
       setMustRunNextInstruction(false);
@@ -149,7 +157,10 @@ const Nivel1 = () => {
         </IndicativosContainer>
       </FirstRowContainer>
       <OperacoesContainer>
-        <InstructionQueue state={instructionState} />
+        <InstructionQueue
+          removeInstruction={removeInstruction}
+          state={instructionState}
+        />
         <InstructionButtons addInstruction={addInstruction} />
       </OperacoesContainer>
     </NivelContainer>

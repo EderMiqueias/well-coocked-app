@@ -7,6 +7,7 @@ import { InstructionButton } from "../InstructionsButtons/Button";
 
 type InstructionProps = {
   index: number;
+  onClick: () => void;
   instruction?: Instruction;
   isCurrentInstruction?: boolean;
   showRightArrow?: boolean;
@@ -14,13 +15,14 @@ type InstructionProps = {
 
 export const InstructionQueueElement: React.FC<InstructionProps> = ({
   index,
+  onClick,
   instruction,
   isCurrentInstruction,
   showRightArrow
 }) => {
   return (
     <>
-      <InstructionContainer highlight={isCurrentInstruction}>
+      <InstructionContainer onClick={onClick} highlight={isCurrentInstruction}>
         {instruction ? (
           <InstructionButton instruction={instruction} onPress={() => {}} />
         ) : (
