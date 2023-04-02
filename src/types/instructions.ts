@@ -23,7 +23,12 @@ export type ActionInstructionGroup = {
   postInstruction: ActionInstructions;
 };
 
+export type IndexedInstruction = {
+  index: number;
+  instruction: Instruction;
+};
+
 export type IntructionQueueState = {
-  intructionQueue: Instruction[];
+  intructionQueue: IndexedInstruction[];
   currentIntructionIndex: number;
 };

@@ -15,8 +15,8 @@ import {
   Coords,
   Dishs,
   GameSpaceState,
-  GameStates,
   ImmobileItems,
+  IndexedInstruction,
   Instruction,
   IntructionQueueState,
   MobileItems
@@ -64,32 +64,64 @@ const Nivel1 = () => {
   const [characterCoords, setCharacterCoords] =
     useState<Coords>({ y: 2, x: 1 });
 
+  const [mustRunNextInstruction, setMustRunNextInstruction] = useState(false);
+
   const restartGameSTate = () => {
     setCharacterCoords({ y: 2, x: 1 });
-    setGameState(getNivel1InitialState())
-  };
-
-  const addInstruction = (instruction: Instruction) => {
+    setGameState(getNivel1InitialState());
     setInstructionState(
       (oldValue) => ({
         ...oldValue,
-        intructionQueue: [...oldValue.intructionQueue, instruction]
+        currentIntructionIndex: 0
       })
     );
   };
 
-  const runInstruction = (instruction: Instruction) => {
-    const [newState, newCoords] =
-      moveCharacter(gameState, characterCoords, instruction);
-    setGameState({ ...newState });
-    setCharacterCoords({ ...newCoords })
+  const addInstruction = (instruction: Instruction) => {
+    const indexedInstruction = {
+      index: instructionState.intructionQueue.length,
+      instruction
+    } as IndexedInstruction;
+    setInstructionState(
+      (oldValue) => ({
+        ...oldValue,
+        intructionQueue: [...oldValue.intructionQueue, indexedInstruction]
+      })
+    );
+  };
+
+  const runInstruction = (instruction?: IndexedInstruction) => {
+    if (instruction) {
+      setMustRunNextInstruction(false);
+      const [newState, newCoords] =
+        moveCharacter(gameState, characterCoords, instruction.instruction);
+      setGameState({ ...newState });
+      setCharacterCoords({ ...newCoords });
+      setInstructionState((oldState) => ({
+        ...oldState,
+        currentIntructionIndex: oldState.currentIntructionIndex + 1
+      }));
+    }
   };
 
   const run = () => {
     if (instructionState.intructionQueue.length > 0) {
-      instructionState.intructionQueue.forEach(runInstruction);
+      setMustRunNextInstruction(true);
+      // instructionState.intructionQueue.forEach(runInstruction);
     }
   };
+
+  useEffect(() => {
+    if (mustRunNextInstruction) {
+      runInstruction(
+        instructionState.intructionQueue[instructionState.currentIntructionIndex]
+      );
+      setTimeout(() => {
+        setMustRunNextInstruction(true);
+      }, 2000);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mustRunNextInstruction])
 
   useEffect(() => {
     // setGameState((oldValue) => ({ ...oldValue, gameState: GameStates.completed }))
