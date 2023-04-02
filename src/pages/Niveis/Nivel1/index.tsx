@@ -126,7 +126,7 @@ const Nivel1 = () => {
       );
       setTimeout(() => {
         setMustRunNextInstruction(true);
-      }, 2000);
+      }, 1700);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])
