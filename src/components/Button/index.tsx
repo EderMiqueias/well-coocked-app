@@ -3,7 +3,7 @@ import React from "react";
 import { Play } from "@/assets";
 import { ImageIcon } from "@/common";
 
-import { MenuButton, RunButton } from "./styles";
+import { Text, ButtonTextContainer, MenuButton, RunButton } from "./styles";
 
 type TypeButton = "menu" | "run";
 
@@ -23,9 +23,12 @@ export const Button: React.FC<ButtonProps> = ({
       return <MenuButton>{text}</MenuButton>;
     case "run":
       return (
-        <RunButton onClick={onPress}>
-          <ImageIcon width="40px" height="40px" src={Play} />
-        </RunButton>
-      )
+        <ButtonTextContainer>
+          <RunButton onClick={onPress}>
+            <ImageIcon width="40px" height="40px" src={Play} />
+          </RunButton>
+          <Text>Cozinhar!</Text>
+        </ButtonTextContainer>
+      );
   }
 };
