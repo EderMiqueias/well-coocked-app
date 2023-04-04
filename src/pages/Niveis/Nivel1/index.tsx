@@ -16,7 +16,7 @@ import {
   GameSpaceState,
   ImmobileItems,
   IndexedInstruction,
-  Instruction,
+  Instructions,
   IntructionQueueState,
   MainCharacterState,
   MobileItems
@@ -36,6 +36,7 @@ import {
   FirstRowContainer,
   RunButtonContainer
 } from '../styles';
+import { InstructionsArray } from '@/constants';
 
 const getNivel1InitialState = (): GameSpaceState => {
   let state = getNivelInitialState(4, 4, 30);
@@ -81,7 +82,7 @@ const Nivel1 = () => {
     );
   };
 
-  const addInstruction = (instruction: Instruction) => {
+  const addInstruction = (instruction: Instructions) => {
     const indexedInstruction = {
       index: instructionState.intructionQueue.length,
       instruction
@@ -108,13 +109,18 @@ const Nivel1 = () => {
   const runInstruction = (instruction?: IndexedInstruction) => {
     if (instruction) {
       setMustRunNextInstruction(false);
-      const [newState, newCoords] =
-        moveCharacter(gameState, characterState.coords, instruction.instruction);
-      setGameState({ ...newState });
-      setCharacterState((oldState) => ({
-        subItem: oldState.subItem,
-        coords: newCoords
-      }))
+      if (InstructionsArray.includes(instruction.instruction)) {
+        const newState = {} as GameSpaceState;
+        setGameState({ ...newState });
+      } else {
+        const [newState, newCoords] =
+          moveCharacter(gameState, characterState.coords, instruction.instruction);
+          setCharacterState((oldState) => ({
+            subItem: oldState.subItem,
+            coords: newCoords
+          }));
+          setGameState({ ...newState });
+      }
     }
   };
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Instruction } from "@/types";
+import { Instructions } from "@/types";
 import { InstructionContainer, SVGItem, VoidInstruction } from "./styles";
 import { ArrowRightDirection } from "@/assets";
 import { InstructionButton } from "../InstructionsButtons/Button";
@@ -8,7 +8,7 @@ import { InstructionButton } from "../InstructionsButtons/Button";
 type InstructionProps = {
   index: number;
   onClick: () => void;
-  instruction?: Instruction;
+  instruction?: Instructions;
   isCurrentInstruction?: boolean;
   showRightArrow?: boolean;
 }

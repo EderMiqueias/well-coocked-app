@@ -1,4 +1,4 @@
-import { BlockState, Coords, GameSpaceState, GameStates, Instruction, MovementInstructions } from "@/types";
+import { BlockState, Coords, GameSpaceState, GameStates, Instructions } from "@/types";
 
 export const updateBlock = (
   state: GameSpaceState,
@@ -13,7 +13,7 @@ export const updateBlock = (
 export const moveCharacter = (
   state: GameSpaceState,
   mainCharacterCoords: Coords,
-  instruction: Instruction
+  instruction: Instructions
 ): [GameSpaceState, Coords] => {
   const coords = mainCharacterCoords;
 
@@ -21,25 +21,25 @@ export const moveCharacter = (
   let newCoords: Coords = mainCharacterCoords;
 
   switch (instruction) {
-    case MovementInstructions.bottom:
+    case Instructions.bottom:
       newCoords = {
         y: coords.y + 1,
         x: coords.x
       };
       break;
-    case MovementInstructions.left:
+    case Instructions.left:
       newCoords = {
         y: coords.y,
         x: coords.x - 1
       };
       break;
-    case MovementInstructions.right:
+    case Instructions.right:
       newCoords = {
         y: coords.y,
         x: coords.x + 1
       };
       break;
-    case MovementInstructions.top:
+    case Instructions.top:
       newCoords = {
         y: coords.y - 1,
         x: coords.x

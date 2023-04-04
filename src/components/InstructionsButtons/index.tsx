@@ -1,5 +1,5 @@
 import { HighlightTitle } from "@/common"
-import { ActionInstructions, Instruction, MovementInstructions } from "@/types"
+import { Instructions } from "@/types"
 
 import { InstructionButton } from "./Button"
 import {
@@ -11,7 +11,7 @@ import {
 } from "./styles"
 
 type InstructionsButtonProps = {
-  addInstruction: (instruction: Instruction) => void;
+  addInstruction: (instruction: Instructions) => void;
 };
 
 export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
@@ -23,39 +23,39 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
       <Row>
         <ButtonsContainer>
           <InstructionButton
-            instruction={MovementInstructions.top}
-            onPress={() => addInstruction(MovementInstructions.top)}
+            instruction={Instructions.top}
+            onPress={() => addInstruction(Instructions.top)}
           />
           <MovementButtonsContainer>
             <InstructionButton
-              instruction={MovementInstructions.left}
-              onPress={() => addInstruction(MovementInstructions.left)}
+              instruction={Instructions.left}
+              onPress={() => addInstruction(Instructions.left)}
             />
             <InstructionButton
-              instruction={MovementInstructions.right}
-              onPress={() => addInstruction(MovementInstructions.right)}
+              instruction={Instructions.right}
+              onPress={() => addInstruction(Instructions.right)}
             />
           </MovementButtonsContainer>
           <InstructionButton
-            instruction={MovementInstructions.bottom}
-            onPress={() => addInstruction(MovementInstructions.bottom)}
+            instruction={Instructions.bottom}
+            onPress={() => addInstruction(Instructions.bottom)}
           />
         </ButtonsContainer>
 
         <ActionButtonsContainer>
           <InstructionButton
-            instruction={ActionInstructions.grabRelease}
-            onPress={() => addInstruction(ActionInstructions.grabRelease)}
+            instruction={Instructions.grabRelease}
+            onPress={() => addInstruction(Instructions.grabRelease)}
             text="Pegar/Soltar"
           />
           {/* <InstructionButton
-            instruction={ActionInstructions.interact}
-            onPress={() => addInstruction(ActionInstructions.interact)}
+            instruction={Instructions.interact}
+            onPress={() => addInstruction(Instructions.interact)}
             text="Interagir"
           /> */}
           <InstructionButton
-            instruction={ActionInstructions.wait}
-            onPress={() => addInstruction(ActionInstructions.wait)}
+            instruction={Instructions.wait}
+            onPress={() => addInstruction(Instructions.wait)}
             text="Aguardar"
           />
         </ActionButtonsContainer>

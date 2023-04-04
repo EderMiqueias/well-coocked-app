@@ -1,31 +1,26 @@
-export enum MovementInstructions {
+export enum Instructions {
+  grabRelease = 'grabRelease',
+  interact = 'interact',
+  wait = 'wait',
   top = 'top',
   right = 'right',
   bottom = 'bottom',
   left = 'left'
 };
 
-export enum ActionInstructions {
-  grabRelease = 'grabRelease',
-  interact = 'interact',
-  wait = 'wait'
-};
-
-export type Instruction = ActionInstructions | MovementInstructions;
-
 export type MovementIntructionGroup = {
-  instruction: MovementInstructions;
+  instruction: Instructions;
   steps: number;
 };
 
 export type ActionInstructionGroup = {
-  instruction: ActionInstructions;
-  postInstruction: ActionInstructions;
+  instruction: Instructions;
+  postInstruction: Instructions;
 };
 
 export type IndexedInstruction = {
   index: number;
-  instruction: Instruction;
+  instruction: Instructions;
 };
 
 export type IntructionQueueState = {
