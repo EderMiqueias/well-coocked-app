@@ -12,16 +12,17 @@ import {
 } from '@/components';
 import {
   BlockState,
-  Coords,
   Dishs,
   GameSpaceState,
   ImmobileItems,
   IndexedInstruction,
   Instruction,
   IntructionQueueState,
+  MainCharacterState,
   MobileItems
 } from '@/types';
 import {
+  getInitialCharacterState,
   getInitialInstructionQueueState,
   getNivelInitialState,
   moveCharacter,
@@ -61,13 +62,16 @@ const Nivel1 = () => {
     useState<GameSpaceState>(getNivel1InitialState());
   const [instructionState, setInstructionState] =
     useState<IntructionQueueState>(getInitialInstructionQueueState());
-  const [characterCoords, setCharacterCoords] =
-    useState<Coords>({ y: 2, x: 1 });
+  const [characterState, setCharacterState] =
+    useState<MainCharacterState>(getInitialCharacterState({ y: 2, x: 1 }));
 
   const [mustRunNextInstruction, setMustRunNextInstruction] = useState(false);
 
   const restartGameSTate = () => {
-    setCharacterCoords({ y: 2, x: 1 });
+    setCharacterState({
+      subItem: undefined,
+      coords: { y: 2, x: 1 }
+    });
     setGameState(getNivel1InitialState());
     setInstructionState(
       (oldValue) => ({
@@ -97,18 +101,20 @@ const Nivel1 = () => {
         intructionQueue: oldValue.intructionQueue.filter((item) => item.index !== index)
       })
     );
+  
+  const isLastInstruction = () =>
+    instructionState.intructionQueue.length === instructionState.currentIntructionIndex + 1
 
   const runInstruction = (instruction?: IndexedInstruction) => {
     if (instruction) {
       setMustRunNextInstruction(false);
       const [newState, newCoords] =
-        moveCharacter(gameState, characterCoords, instruction.instruction);
+        moveCharacter(gameState, characterState.coords, instruction.instruction);
       setGameState({ ...newState });
-      setCharacterCoords({ ...newCoords });
-      setInstructionState((oldState) => ({
-        ...oldState,
-        currentIntructionIndex: oldState.currentIntructionIndex + 1
-      }));
+      setCharacterState((oldState) => ({
+        subItem: oldState.subItem,
+        coords: newCoords
+      }))
     }
   };
 
@@ -125,7 +131,11 @@ const Nivel1 = () => {
         instructionState.intructionQueue[instructionState.currentIntructionIndex]
       );
       setTimeout(() => {
-        setMustRunNextInstruction(true);
+        setInstructionState((oldState) => ({
+          ...oldState,
+          currentIntructionIndex: oldState.currentIntructionIndex + 1
+        }));
+        setMustRunNextInstruction(!isLastInstruction());
       }, 1700);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -147,7 +157,7 @@ const Nivel1 = () => {
       <BackIconComponent backTo="/niveis" />
       <FirstRowContainer>
         <GameSpace state={gameState}>
-          <Droid gameStateCoords={characterCoords} size={84} />
+          <Droid characterState={characterState} size={84} />
         </GameSpace>
         <IndicativosContainer>
           <Indicatives dish={Dishs.pure} secondsLeft={gameState.timeLeft} />

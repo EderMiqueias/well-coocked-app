@@ -25,3 +25,7 @@ export const CheffDroidContainer = styled.div<CheffDroidProps>`
   animation-name: ${(props) => animation(props)};
   animation-duration: 2s;
 `;
+
+export const SubItemContainer = styled.div`
+
+`;

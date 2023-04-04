@@ -1,4 +1,4 @@
-import { BlockState, GameSpaceState, GameStates, IntructionQueueState } from "@/types";
+import { BlockState, Coords, GameSpaceState, GameStates, IntructionQueueState, MainCharacterState } from "@/types";
 
 export const getVoidBlockState = (): BlockState => ({
   isMainCharacter: false,
@@ -24,3 +24,8 @@ export const getInitialInstructionQueueState = () => ({
   currentIntructionIndex: 0,
   intructionQueue: []
 } as IntructionQueueState);
+
+export const getInitialCharacterState = (coords?: Coords) => ({
+  coords: coords || { y: 1, x: 1 },
+  subItem: undefined
+} as MainCharacterState);

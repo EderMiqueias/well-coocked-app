@@ -40,4 +40,9 @@ export type GameSpaceState = {
   [y: number]: {
     [x: number]: BlockState;
   }
-}
+};
+
+export type MainCharacterState = {
+  coords: Coords;
+  subItem?: MobileItems;
+};

@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import { CheffDroid } from "@/assets";
 import { ImageIcon } from "@/common";
 import { BLOCK_HEIGHT, BLOCK_WIDTH } from "@/constants";
-import { Coords } from "@/types";
+import { Coords, MainCharacterState } from "@/types";
 
 import { CheffDroidContainer, Position } from "./styles";
+import { getMobileItemIcon } from "@/utils";
 
 type CheffDroidProps = {
   size: number;
-  gameStateCoords: Coords;
+  characterState: MainCharacterState;
 };
 
 const getCharacterPosition = (gsCoords: Coords): Position => {
@@ -21,21 +22,21 @@ const getCharacterPosition = (gsCoords: Coords): Position => {
 
 export const Droid: React.FC<CheffDroidProps> = ({
   size,
-  gameStateCoords
+  characterState
 }) => {
   const [finalPosition, setFinalPosition] =
-    useState<Position>(getCharacterPosition(gameStateCoords));
+    useState<Position>(getCharacterPosition(characterState.coords));
   const [initialPosition, setInitialPosition] =
     useState<Position>(finalPosition);
   const sizeInPixel = `${size}px`;
 
   useEffect(() => {
-    if(gameStateCoords) {
+    if(characterState.coords) {
       setInitialPosition(finalPosition);
-      setFinalPosition(getCharacterPosition(gameStateCoords));
+      setFinalPosition(getCharacterPosition(characterState.coords));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [gameStateCoords])
+  }, [characterState.coords])
 
   return (
     <CheffDroidContainer
@@ -43,6 +44,7 @@ export const Droid: React.FC<CheffDroidProps> = ({
       final={finalPosition}
     >
       <ImageIcon height={sizeInPixel} width={sizeInPixel} src={CheffDroid} />
+      <ImageIcon height="auto" width="36px" src={getMobileItemIcon(characterState.subItem)} />
     </CheffDroidContainer>
   )
 };
