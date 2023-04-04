@@ -1,8 +1,8 @@
-import { ImmobileItems, MobileItems } from "@/types";
 import React from "react";
+import { ImmobileItems, MobileItems } from "@/types";
 
 import { AbsoluteSubItemContainer, ImmobileItemContainer, SVGItem } from "./styles";
-import { getImmobileItemIcon, getMobileItemIcon } from "./utils";
+import { getImmobileItemIcon, getMobileItemIcon } from "@/utils";
 
 type ImmobileItemProps = {
   item: ImmobileItems;

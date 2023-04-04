@@ -1,8 +1,9 @@
-import { MobileItems } from "@/types";
 import React from "react";
 
+import { MobileItems } from "@/types";
+import { getMobileItemIcon } from "@/utils";
+
 import { MobileItemContainer, SubItemContainer, SVGItem } from "./styles";
-import { getMobileItemIcon } from "./utils";
 
 type MobileItemProps = {
   item: MobileItems;
