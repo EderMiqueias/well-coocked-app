@@ -1,3 +1,4 @@
+import { CheffDroid } from "@/assets";
 import styled, { keyframes } from "styled-components";
 
 export type Position = {
@@ -15,7 +16,7 @@ const animation = (props: CheffDroidProps) => keyframes`
   to  {left:${props.final.left}px; top:${props.final.top}px;}
 `;
 
-export const CheffDroidContainer = styled.div<CheffDroidProps>`
+export const Container = styled.div<CheffDroidProps>`
   position: absolute;
   z-index: 10;
   height: 100px;
@@ -24,6 +25,16 @@ export const CheffDroidContainer = styled.div<CheffDroidProps>`
   top: ${({final}) => final.top}px;
   animation-name: ${(props) => animation(props)};
   animation-duration: 2s;
+`;
+
+export const CheffDroidContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+`;
+
+export const ImageContainer = styled.div`
+  position: absolute;
 `;
 
 export const SubItemContainer = styled.div`
