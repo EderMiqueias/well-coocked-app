@@ -48,6 +48,7 @@ export const moveCharacter = (
   try {
     newState[newCoords.y][newCoords.x].isMainCharacter = true;
     newState[coords.y][coords.x].isMainCharacter = false;
+    newState.timeLeft = state.timeLeft - 2;
   } catch {
     newState.gameState = GameStates.droidHitItsHead;
     newCoords = coords;

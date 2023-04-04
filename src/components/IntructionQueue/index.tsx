@@ -38,7 +38,7 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
     <Container>
       <HighlightTitle>FILA DE INSTRUÇÕES</HighlightTitle>
       <QueueContainer>
-        {getInstructionsRow(12)}
+        {getInstructionsRow(14)}
       </QueueContainer>
     </Container>
   );
