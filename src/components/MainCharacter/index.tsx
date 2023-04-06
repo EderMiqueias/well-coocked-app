@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 
-import { CheffDroid } from "@/assets";
 import { ImageIcon } from "@/common";
 import { BLOCK_HEIGHT, BLOCK_WIDTH } from "@/constants";
 import { Coords, MainCharacterState } from "@/types";
 import { getMobileItemIcon } from "@/utils";
 
-import { CheffDroidContainer, Container, ImageContainer, Position } from "./styles";
+import {
+  CheffDroidContainer,
+  Container,
+  CheffDroidSprite,
+  ImageContainer,
+  Position,
+  CheffDroidSpriteMode
+} from "./styles";
 
 type CheffDroidProps = {
-  size: number;
   characterState: MainCharacterState;
 };
 
@@ -21,14 +26,13 @@ const getCharacterPosition = (gsCoords: Coords): Position => {
 };
 
 export const Droid: React.FC<CheffDroidProps> = ({
-  size,
   characterState
 }) => {
   const [finalPosition, setFinalPosition] =
     useState<Position>(getCharacterPosition(characterState.coords));
   const [initialPosition, setInitialPosition] =
     useState<Position>(finalPosition);
-  const sizeInPixel = `${size}px`;
+  const [mode, setMode] = useState<CheffDroidSpriteMode>('normal');
 
   useEffect(() => {
     if (characterState.coords) {
@@ -38,6 +42,15 @@ export const Droid: React.FC<CheffDroidProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [characterState.coords])
 
+  useEffect(() => {
+    if (characterState.isWaiting) {
+      setMode('sleeping');
+    } else {
+      setMode('normal');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [characterState.isWaiting])
+
   return (
     <Container
       initial={initialPosition}
@@ -45,16 +58,12 @@ export const Droid: React.FC<CheffDroidProps> = ({
     >
       <CheffDroidContainer>
         <ImageContainer>
-          <ImageIcon
-            height={sizeInPixel}
-            width={sizeInPixel}
-            src={CheffDroid}
-          />
+          <CheffDroidSprite mode={mode} />
         </ImageContainer>
         <ImageContainer style={{display: 'flex', top: 45}}>
           <ImageIcon
             height="auto"
-            width="33px"
+            width="25px"
             src={getMobileItemIcon(characterState.subItem)}
           />
         </ImageContainer>

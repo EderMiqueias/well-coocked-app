@@ -13,7 +13,7 @@ export { default as ArrowRight } from './svg/arrow-right.svg';
 export { default as ArrowTop } from './svg/arrow-top.svg';
 export { default as Beans } from './svg/beans.svg';
 export { default as BeansCoocked } from './svg/beans-cooked.svg';
-export { default as CheffDroid } from './svg/cheff-droid.svg';
+export { default as CheffDroid } from './svg/cheff-droid-sprite.svg';
 export { default as Clock } from './svg/clock.svg';
 export { default as CuttingBoard } from './svg/cutting-board.svg';
 export { default as Dish } from './svg/dish.svg';

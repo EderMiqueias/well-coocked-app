@@ -159,7 +159,7 @@ const Nivel1 = () => {
       <BackIconComponent backTo="/niveis" />
       <FirstRowContainer>
         <GameSpace state={gameState}>
-          <Droid characterState={characterState} size={84} />
+          <Droid characterState={characterState} />
         </GameSpace>
         <IndicativosContainer>
           <Indicatives dish={Dishs.pure} secondsLeft={gameState.timeLeft} />

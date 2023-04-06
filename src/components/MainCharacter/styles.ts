@@ -33,6 +33,30 @@ export const CheffDroidContainer = styled.div`
   justify-content: center;
 `;
 
+export type CheffDroidSpriteMode = 'normal' | 'sleeping' | 'side';
+
+export interface CheffDroidSpriteProps {
+  mode: CheffDroidSpriteMode;
+};
+
+const getPositionFromMode = (mode: CheffDroidSpriteMode) => {
+  switch (mode) {
+    case "normal":
+      return '0px';
+    case "side":
+      return '44px';
+    case 'sleeping':
+      return '88px';
+  }
+};
+
+export const CheffDroidSprite = styled.div<CheffDroidSpriteProps>`
+  background: url(${CheffDroid});
+  height: 72px;
+  width: 44px;
+  background-position: ${({mode}) => getPositionFromMode(mode)};
+`;
+
 export const ImageContainer = styled.div`
   position: absolute;
 `;
