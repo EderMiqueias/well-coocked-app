@@ -11,8 +11,10 @@ import {
   CheffDroidSprite,
   ImageContainer,
   Position,
-  CheffDroidSpriteMode
+  CheffDroidSpriteMode,
+  TempContainer
 } from "./styles";
+import { Temp8Secs } from "@/assets";
 
 type CheffDroidProps = {
   characterState: MainCharacterState;
@@ -67,6 +69,13 @@ export const Droid: React.FC<CheffDroidProps> = ({
             src={getMobileItemIcon(characterState.subItem)}
           />
         </ImageContainer>
+        <TempContainer hidden={!!characterState.isWaiting}>
+          <ImageIcon
+            height="40px"
+            width="auto"
+            src={Temp8Secs}
+          />
+        </TempContainer>
       </CheffDroidContainer>
     </Container>
   )

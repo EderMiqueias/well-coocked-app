@@ -61,6 +61,14 @@ export const ImageContainer = styled.div`
   position: absolute;
 `;
 
+export const TempContainer = styled(ImageContainer)<{hidden: boolean}>`
+  display: flex;
+  top: 0px;
+  left: 75px;
+  opacity: ${({hidden}) => hidden ? '100' : '0'};
+  transition: opacity 0.5s linear;
+`;
+
 export const SubItemContainer = styled.div`
 
 `;

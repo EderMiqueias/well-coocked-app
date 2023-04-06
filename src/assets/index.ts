@@ -6,6 +6,7 @@ export { default as CriticalIcon } from './png/critical.png';
 export { default as InterrogationIcon } from './png/interrogation.png';
 export { default as LateIcon } from './png/late.png';
 export { default as SuccessIcon } from './png/success.png';
+export { default as Temp8Secs } from './png/temp-8secs.png';
 
 export { default as ArrowBottom } from './svg/arrow-bottom.svg';
 export { default as ArrowLeft } from './svg/arrow-left.svg';
