@@ -66,6 +66,7 @@ export const getNewStateRunInstruction = (
       .isMainCharacter = true;
     newGameState[coords.y][coords.x].isMainCharacter = false;
     newGameState.timeLeft = state.timeLeft - 2;
+    newCharacterState.isWaiting = false;
   } catch {
     newGameState.gameState = GameStates.droidHitItsHead;
     newCharacterState.coords = coords;
