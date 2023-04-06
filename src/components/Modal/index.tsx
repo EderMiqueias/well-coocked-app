@@ -34,7 +34,7 @@ export const Modal: React.FC<ModalProps> = ({
       buttonAction: backToNiveis
     },
     droidHitItsHead: {
-      text: 'Essa não! Cheff Droid bateu com tudo numa parede e não consegue continuar!',
+      text: 'Essa não! Cheff Droid bateu com tudo em uma parede e não consegue continuar!',
       icon: CriticalIcon,
       buttonText: 'TentarNovamente',
       buttonColor: '#ed6755',
