@@ -9,9 +9,9 @@ const HomePage = () => {
         <Row>
             <ImageIcon width='500px' height='500px' src={Android1} />
             <MenuContainer>
-                <MenuTitle>Menu Principal</MenuTitle>
+                <MenuTitle>Well Coocked!</MenuTitle>
                 <Anchor url="/niveis" >
-                    <Button text='Niveis' type='menu' />
+                    <Button text='Jogar' type='menu' />
                 </Anchor>
                 <Anchor url="/sobre">
                     <Button text='Sobre o jogo' type='menu' />
