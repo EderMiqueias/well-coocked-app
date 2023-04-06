@@ -25,7 +25,7 @@ import {
   getInitialCharacterState,
   getInitialInstructionQueueState,
   getNivelInitialState,
-  moveCharacter,
+  getNewStateRunInstruction,
   updateBlock
 } from '@/utils';
 
@@ -108,26 +108,28 @@ const Nivel1 = () => {
   const runInstruction = (instruction?: IndexedInstruction) => {
     if (instruction) {
       setMustRunNextInstruction(false);
-      const [newState, newCoords] =
-        moveCharacter(gameState, characterState.coords, instruction.instruction);
-      setCharacterState((oldState) => ({
-        subItem: oldState.subItem,
-        coords: newCoords
-      }));
-      setGameState({ ...newState });
+      const [newGameState, newCharacterState] = getNewStateRunInstruction(
+          gameState,
+          characterState,
+          instruction.instruction
+        );
+      setCharacterState({ ...newCharacterState});
+      setGameState({ ...newGameState });
+
+      if (newCharacterState.isWaiting) return 3400;
     }
+    return 1700;
   };
 
   const run = () => {
     if (instructionState.intructionQueue.length > 0) {
       setMustRunNextInstruction(true);
-      // instructionState.intructionQueue.forEach(runInstruction);
     }
   };
 
   useEffect(() => {
     if (mustRunNextInstruction) {
-      runInstruction(
+      const timeoutMs = runInstruction(
         instructionState.intructionQueue[instructionState.currentIntructionIndex]
       );
       setTimeout(() => {
@@ -136,7 +138,7 @@ const Nivel1 = () => {
           currentIntructionIndex: oldState.currentIntructionIndex + 1
         }));
         setMustRunNextInstruction(!isLastInstruction());
-      }, 1700);
+      }, timeoutMs);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])

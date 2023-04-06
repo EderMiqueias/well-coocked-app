@@ -44,5 +44,6 @@ export type GameSpaceState = {
 
 export type MainCharacterState = {
   coords: Coords;
+  isWaiting?: boolean;
   subItem?: MobileItems;
 };

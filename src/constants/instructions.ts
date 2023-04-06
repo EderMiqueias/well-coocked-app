@@ -1,3 +1,4 @@
 import { Instructions } from "@/types";
 
-export const InstructionsArray = Object.values(Instructions);
+export const INSTRUCTIONS_ARRAY = Object.values(Instructions);
+export const WAITING_TIMEOUT_MS = 8;

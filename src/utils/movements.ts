@@ -1,4 +1,11 @@
-import { BlockState, Coords, GameSpaceState, GameStates, Instructions } from "@/types";
+import { WAITING_TIMEOUT_MS } from "@/constants";
+import {
+  BlockState,
+  GameSpaceState,
+  GameStates,
+  Instructions,
+  MainCharacterState
+} from "@/types";
 
 export const updateBlock = (
   state: GameSpaceState,
@@ -10,48 +17,58 @@ export const updateBlock = (
   return state;
 };
 
-export const moveCharacter = (
+export const getNewStateRunInstruction = (
   state: GameSpaceState,
-  mainCharacterCoords: Coords,
+  characterState: MainCharacterState,
   instruction: Instructions
-): [GameSpaceState, Coords] => {
-  const coords = mainCharacterCoords;
-
-  const newState = state;
-  let newCoords: Coords = mainCharacterCoords;
-
+): [GameSpaceState, MainCharacterState] => {
+  const newGameState = state;
+  const newCharacterState = characterState;
+  
+  const { coords } = characterState;
   switch (instruction) {
     case Instructions.bottom:
-      newCoords = {
+      newCharacterState.coords = {
         y: coords.y + 1,
         x: coords.x
       };
       break;
     case Instructions.left:
-      newCoords = {
+      newCharacterState.coords = {
         y: coords.y,
         x: coords.x - 1
       };
       break;
     case Instructions.right:
-      newCoords = {
+      newCharacterState.coords = {
         y: coords.y,
         x: coords.x + 1
       };
       break;
     case Instructions.top:
-      newCoords = {
+      newCharacterState.coords = {
         y: coords.y - 1,
         x: coords.x
       };
+      break;
+    case Instructions.grabRelease:
+      break;
+    case Instructions.wait:
+      newCharacterState.isWaiting = true;
+      newGameState.timeLeft = state.timeLeft - WAITING_TIMEOUT_MS;
+      return [newGameState, newCharacterState];
+    case Instructions.interact:
+      // NOT IMPLEMENTED #YET#
+      break;
   }
   try {
-    newState[newCoords.y][newCoords.x].isMainCharacter = true;
-    newState[coords.y][coords.x].isMainCharacter = false;
-    newState.timeLeft = state.timeLeft - 2;
+    newGameState[newCharacterState.coords.y][newCharacterState.coords.x]
+      .isMainCharacter = true;
+    newGameState[coords.y][coords.x].isMainCharacter = false;
+    newGameState.timeLeft = state.timeLeft - 2;
   } catch {
-    newState.gameState = GameStates.droidHitItsHead;
-    newCoords = coords;
+    newGameState.gameState = GameStates.droidHitItsHead;
+    newCharacterState.coords = coords;
   }
-  return [newState, newCoords];
+  return [newGameState, newCharacterState];
 };
