@@ -18,12 +18,12 @@ export const updateBlock = (
 };
 
 export const getNewStateRunInstruction = (
-  state: GameSpaceState,
+  gameState: GameSpaceState,
   characterState: MainCharacterState,
   instruction: Instructions
 ): [GameSpaceState, MainCharacterState] => {
-  const newGameState = state;
-  const newCharacterState = characterState;
+  const newGameState = { ...gameState };
+  const newCharacterState = { ...characterState };
   
   const { coords } = characterState;
   switch (instruction) {
@@ -52,10 +52,13 @@ export const getNewStateRunInstruction = (
       };
       break;
     case Instructions.grabRelease:
-      break;
+      newCharacterState.subItem = gameState[coords.y][coords.x].mobileItem;
+      newGameState[coords.y][coords.x].mobileItem = characterState.subItem;
+      newGameState.timeLeft -= 1;
+      return [newGameState, newCharacterState];
     case Instructions.wait:
       newCharacterState.isWaiting = true;
-      newGameState.timeLeft = state.timeLeft - WAITING_TIMEOUT_MS;
+      newGameState.timeLeft -= WAITING_TIMEOUT_MS;
       return [newGameState, newCharacterState];
     case Instructions.interact:
       // NOT IMPLEMENTED #YET#
@@ -65,7 +68,7 @@ export const getNewStateRunInstruction = (
     newGameState[newCharacterState.coords.y][newCharacterState.coords.x]
       .isMainCharacter = true;
     newGameState[coords.y][coords.x].isMainCharacter = false;
-    newGameState.timeLeft = state.timeLeft - 2;
+    newGameState.timeLeft -= 2;
     newCharacterState.isWaiting = false;
   } catch {
     newGameState.gameState = GameStates.droidHitItsHead;

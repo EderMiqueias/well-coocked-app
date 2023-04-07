@@ -1,4 +1,4 @@
-import { BlockState, Coords, GameSpaceState, GameStates, IntructionQueueState, MainCharacterState } from "@/types";
+import { BlockState, Coords, GameSpaceState, GameStates, IntructionQueueState, MainCharacterState, MobileItemState, MobileItems } from "@/types";
 
 export const getVoidBlockState = (): BlockState => ({
   isMainCharacter: false,
@@ -29,3 +29,11 @@ export const getInitialCharacterState = (coords?: Coords) => ({
   coords: coords || { y: 1, x: 1 },
   subItem: undefined
 } as MainCharacterState);
+
+export const getMobileIconState = (
+  item: MobileItems,
+  subItem?: MobileItems
+): MobileItemState => ({
+  item,
+  subItem
+});
