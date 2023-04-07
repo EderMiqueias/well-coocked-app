@@ -26,7 +26,8 @@ import {
   getInitialInstructionQueueState,
   getNivelInitialState,
   getNewStateRunInstruction,
-  updateBlock
+  updateBlock,
+  getMobileIconState
 } from '@/utils';
 
 import {
@@ -44,14 +45,14 @@ const getNivel1InitialState = (): GameSpaceState => {
     isMainCharacter: true
   } as BlockState);
   updateBlock(state, 2, 2, {
-    mobileItem: MobileItems.potato
+    mobileItem: getMobileIconState(MobileItems.potato)
   } as BlockState);
   updateBlock(state, 2, 3, {
-    mobileItem: MobileItems.pan,
+    mobileItem: getMobileIconState(MobileItems.pan),
     immobileItem: ImmobileItems.stove
   } as BlockState);
   updateBlock(state, 2, 4, {
-    mobileItem: MobileItems.dish
+    mobileItem: getMobileIconState(MobileItems.dish)
   } as BlockState);
 
   return state;
@@ -117,6 +118,7 @@ const Nivel1 = () => {
       setGameState({ ...newGameState });
 
       if (newCharacterState.isWaiting) return 3400;
+      if (instruction.instruction === Instructions.grabRelease) return 400;
     }
     return 1700;
   };
@@ -142,12 +144,6 @@ const Nivel1 = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])
-
-  useEffect(() => {
-    // setGameState((oldValue) => ({ ...oldValue, gameState: GameStates.completed }))
-    // setInstructionState((oldValue) => ({ ...oldValue, currentIntructionIndex: 3 }))
-    // setInstructionState((oldValue) => ({ ...oldValue, intructionQueue: [] }))
-  }, [])
 
   return (
     <NivelContainer>
