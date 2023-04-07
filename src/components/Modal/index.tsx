@@ -56,25 +56,23 @@ export const Modal: React.FC<ModalProps> = ({
     },
     started: {
       text: '',
-      icon: InterrogationIcon,
+      icon: '',
       buttonText: '',
       buttonColor: '',
       buttonAction: backToNiveis
     }
   };
   const content = allContents[gameState];
+  const mustShowModal = () => gameState !== GameStates.started;
+
   return (
-    <>
-      {gameState !== GameStates.started && (
-        <Container>
-          <Img src={content.icon} />
-          <Text>{content.text}</Text>
-          <Text>Tempo restante: {timeLeft} Segundos</Text>
-          <Button onClick={onClick} color={content.buttonColor}>
-            {content.buttonText}
-          </Button>
-        </Container>
-      )}
-    </>
+    <Container hidden={mustShowModal()}>
+      <Img src={content.icon} />
+      <Text>{content.text}</Text>
+      <Text>Tempo restante: {timeLeft} Segundos</Text>
+      <Button onClick={onClick} color={content.buttonColor}>
+        {content.buttonText}
+      </Button>
+    </Container>
   );
 }

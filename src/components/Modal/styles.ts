@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.div<{hidden: boolean}>`
   width: 320px;
   display: flex;
   flex-direction: column;
@@ -15,6 +15,8 @@ export const Container = styled.div`
   transform: translateX(-50%);
   top: 30%;
   z-index: 12;
+  opacity: ${({hidden}) => hidden ? '100' : '0'};
+  transition: opacity 0.5s linear;
 `;
 
 export const Button = styled.button<{ color: string }> `

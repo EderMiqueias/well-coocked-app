@@ -67,7 +67,7 @@ export const TempContainer = styled(ImageContainer)<{hidden: boolean}>`
   top: 0px;
   left: 75px;
   opacity: ${({hidden}) => hidden ? '100' : '0'};
-  transition: opacity 0.5s linear;
+  transition: opacity 1s ease-in;
 `;
 
 export const SubItemContainer = styled.div`
