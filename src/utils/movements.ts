@@ -4,7 +4,8 @@ import {
   GameSpaceState,
   GameStates,
   Instructions,
-  MainCharacterState
+  MainCharacterState,
+  MobileItems
 } from "@/types";
 
 export const updateBlock = (
@@ -17,6 +18,11 @@ export const updateBlock = (
   return state;
 };
 
+export const isFood = (item?: MobileItems) => item && ![
+  MobileItems.dish,
+  MobileItems.pan
+].includes(item);
+
 export const getNewStateRunInstruction = (
   gameState: GameSpaceState,
   characterState: MainCharacterState,
@@ -24,7 +30,7 @@ export const getNewStateRunInstruction = (
 ): [GameSpaceState, MainCharacterState] => {
   const newGameState = { ...gameState };
   const newCharacterState = { ...characterState };
-  
+
   const { coords } = characterState;
   switch (instruction) {
     case Instructions.bottom:
@@ -52,8 +58,35 @@ export const getNewStateRunInstruction = (
       };
       break;
     case Instructions.grabRelease:
-      newCharacterState.subItem = gameState[coords.y][coords.x].mobileItem;
-      newGameState[coords.y][coords.x].mobileItem = characterState.subItem;
+      const blockItem = gameState[coords.y][coords.x].mobileItem;
+      const chaItem = characterState.subItem;
+
+      if (blockItem === undefined || chaItem === undefined) {
+        newCharacterState.subItem = blockItem;
+        newGameState[coords.y][coords.x].mobileItem = chaItem;
+      } else if (!isFood(blockItem?.item) && isFood(chaItem?.item)) {
+        newCharacterState.subItem = undefined;
+        newGameState[coords.y][coords.x].mobileItem = {
+          item: blockItem!.item,
+          subItem: chaItem?.item
+        };
+      } else if (!isFood(chaItem?.item) && isFood(blockItem?.item)) {
+        newGameState[coords.y][coords.x].mobileItem = undefined;
+        newCharacterState.subItem = {
+          item: chaItem!.item,
+          subItem: blockItem?.item
+        };
+      } else {
+        newCharacterState.subItem = {
+          item: chaItem.item,
+          subItem: undefined
+        };
+        newGameState[coords.y][coords.x].mobileItem = {
+          item: blockItem.item,
+          subItem: chaItem.subItem
+        };
+      }
+
       newGameState.timeLeft -= 1;
       return [newGameState, newCharacterState];
     case Instructions.wait:
