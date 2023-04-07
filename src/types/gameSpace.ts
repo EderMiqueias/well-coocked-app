@@ -20,10 +20,15 @@ export enum ImmobileItems {
   cuttingBoard = 'cutting_board'
 };
 
+export type MobileItemState = {
+  item: MobileItems,
+  subItem?: MobileItems
+};
+
 export type BlockState = {
   isMainCharacter?: boolean;
   immobileItem?: ImmobileItems;
-  mobileItem?: MobileItems;
+  mobileItem?: MobileItemState;
 };
 
 export enum GameStates {
@@ -45,5 +50,5 @@ export type GameSpaceState = {
 export type MainCharacterState = {
   coords: Coords;
   isWaiting?: boolean;
-  subItem?: MobileItems;
+  subItem?: MobileItemState;
 };

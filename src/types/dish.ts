@@ -1,11 +1,11 @@
 export enum Dishs {
-  pure = 'pure',
+  pure = 'purê',
   escondidinho = 'escondidinho',
   achadinho = 'achadinho',
   strogonoff = 'strogonoff',
   macarronada = 'macarronada',
   bolonhesa = 'bolonhesa',
   salada = 'salada',
-  baiao = 'baiao',
+  baiao = 'baião',
   executivo = 'executivo'
 };

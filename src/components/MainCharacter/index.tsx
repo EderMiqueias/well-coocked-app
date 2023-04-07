@@ -66,7 +66,7 @@ export const Droid: React.FC<CheffDroidProps> = ({
           <ImageIcon
             height="auto"
             width="25px"
-            src={getMobileItemIcon(characterState.subItem)}
+            src={getMobileItemIcon(characterState.subItem?.item)}
           />
         </ImageContainer>
         <TempContainer hidden={!!characterState.isWaiting}>
