@@ -14,6 +14,7 @@ import {
   BlockState,
   Dishs,
   GameSpaceState,
+  GameStates,
   ImmobileItems,
   IndexedInstruction,
   Instructions,
@@ -106,22 +107,27 @@ const Nivel1 = () => {
   const isLastInstruction = () =>
     instructionState.intructionQueue.length === instructionState.currentIntructionIndex + 1
 
-  const runInstruction = (instruction?: IndexedInstruction) => {
-    if (instruction) {
-      setMustRunNextInstruction(false);
-      const [newGameState, newCharacterState] = getNewStateRunInstruction(
+  const runInstruction =
+    (instruction?: IndexedInstruction): [number, boolean] => {
+      if (instruction) {
+        setMustRunNextInstruction(false);
+        const [newGameState, newCharacterState] = getNewStateRunInstruction(
           gameState,
           characterState,
           instruction.instruction
         );
-      setCharacterState({ ...newCharacterState});
-      setGameState({ ...newGameState });
+        setCharacterState({ ...newCharacterState });
+        setGameState({ ...newGameState });
 
-      if (newCharacterState.isWaiting) return 3400;
-      if (instruction.instruction === Instructions.grabRelease) return 400;
-    }
-    return 1700;
-  };
+        const shouldContinue = newGameState.gameState === GameStates.started;
+
+        if (newCharacterState.isWaiting) return [3400, shouldContinue];
+        if (instruction.instruction === Instructions.grabRelease)
+          return [400, shouldContinue];
+        return [1700, shouldContinue];
+      }
+      return [1700, false];
+    };
 
   const run = () => {
     if (instructionState.intructionQueue.length > 0) {
@@ -131,16 +137,18 @@ const Nivel1 = () => {
 
   useEffect(() => {
     if (mustRunNextInstruction) {
-      const timeoutMs = runInstruction(
+      const [timeoutMs, shouldContinue] = runInstruction(
         instructionState.intructionQueue[instructionState.currentIntructionIndex]
       );
-      setTimeout(() => {
-        setInstructionState((oldState) => ({
-          ...oldState,
-          currentIntructionIndex: oldState.currentIntructionIndex + 1
-        }));
-        setMustRunNextInstruction(!isLastInstruction());
-      }, timeoutMs);
+      if (!isLastInstruction() && shouldContinue) {
+        setTimeout(() => {
+          setInstructionState((oldState) => ({
+            ...oldState,
+            currentIntructionIndex: oldState.currentIntructionIndex + 1
+          }));
+          setMustRunNextInstruction(true);
+        }, timeoutMs);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])
