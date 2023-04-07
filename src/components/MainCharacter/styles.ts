@@ -1,4 +1,5 @@
 import { CheffDroid } from "@/assets";
+import { ANIMATION_TIME_CSS } from "@/constants";
 import styled, { keyframes } from "styled-components";
 
 export type Position = {
@@ -24,7 +25,7 @@ export const Container = styled.div<CheffDroidProps>`
   left: ${({final}) => final.left}px;
   top: ${({final}) => final.top}px;
   animation-name: ${(props) => animation(props)};
-  animation-duration: 2s;
+  animation-duration: ${ANIMATION_TIME_CSS};
 `;
 
 export const CheffDroidContainer = styled.div`

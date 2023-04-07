@@ -38,6 +38,7 @@ import {
   FirstRowContainer,
   RunButtonContainer
 } from '../styles';
+import { LONG_TIMEOUT_MS, SHORT_TIMEOUT_MS, TIMEOUT_MS } from '@/constants';
 
 const getNivel1InitialState = (): GameSpaceState => {
   let state = getNivelInitialState(4, 4, 30);
@@ -121,12 +122,13 @@ const Nivel1 = () => {
 
         const shouldContinue = newGameState.gameState === GameStates.started;
 
-        if (newCharacterState.isWaiting) return [3400, shouldContinue];
+        if (newCharacterState.isWaiting)
+          return [LONG_TIMEOUT_MS, shouldContinue];
         if (instruction.instruction === Instructions.grabRelease)
-          return [400, shouldContinue];
-        return [1700, shouldContinue];
+          return [SHORT_TIMEOUT_MS, shouldContinue];
+        return [TIMEOUT_MS, shouldContinue];
       }
-      return [1700, false];
+      return [TIMEOUT_MS, false];
     };
 
   const run = () => {
