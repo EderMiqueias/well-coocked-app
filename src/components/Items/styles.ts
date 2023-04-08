@@ -24,10 +24,10 @@ export const SubItemContainer = styled.div`
   justify-items: center;
   border-radius: 24px;
   padding: 4px;
-  /* margin-bottom: -6px; */
 `;
 
-export const AbsoluteSubItemContainer = styled.div`
+export const AbsoluteSubItemContainer = styled.div<{ alinhar: boolean }>`
   position: absolute;
   padding-left: 4px;
+  ${({alinhar}) => alinhar ? 'transform: translateY(-42%);' : ''}
 `;

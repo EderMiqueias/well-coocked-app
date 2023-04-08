@@ -1,24 +1,29 @@
 import React from "react";
-import { ImmobileItems, MobileItems } from "@/types";
+import { ImmobileItems, MobileItemState, MobileItems } from "@/types";
 
 import { AbsoluteSubItemContainer, ImmobileItemContainer, SVGItem } from "./styles";
-import { getImmobileItemIcon, getMobileItemIcon } from "@/utils";
+import { getImmobileItemIcon } from "@/utils";
+import { MobileItem } from "./MobileItem";
 
 type ImmobileItemProps = {
   item: ImmobileItems;
-  subItem?: MobileItems;
+  subItem?: MobileItemState;
 };
 
 export const ImmobileItem: React.FC<ImmobileItemProps> = ({
   item,
   subItem
 }) => {
-  const isPan = subItem === MobileItems.pan;
+  const isPan = subItem?.item === MobileItems.pan;
   return (
     <ImmobileItemContainer>
       {isPan && (
-        <AbsoluteSubItemContainer>
-          <SVGItem size={56} src={getMobileItemIcon(subItem)} />
+        <AbsoluteSubItemContainer alinhar={!!subItem.subItem}>
+          <MobileItem
+            item={subItem.item}
+            subItem={subItem.subItem}
+            size={56}
+          />
         </AbsoluteSubItemContainer>
       )}
       <SVGItem size={64} src={getImmobileItemIcon(item)} />

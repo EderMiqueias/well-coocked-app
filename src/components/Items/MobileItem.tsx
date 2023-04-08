@@ -8,13 +8,16 @@ import { MobileItemContainer, SubItemContainer, SVGItem } from "./styles";
 type MobileItemProps = {
   item: MobileItems;
   subItem?: MobileItems;
+  size?: number;
 };
 
 export const MobileItem: React.FC<MobileItemProps> = ({
   item,
-  subItem
+  subItem,
+  size
 }) => {
   const isPanOrDish = [MobileItems.pan, MobileItems.dish].includes(item);
+  const itemSize = isPanOrDish ? 64 : 48;
   return (
     <MobileItemContainer>
       {(subItem && isPanOrDish) && (
@@ -22,7 +25,7 @@ export const MobileItem: React.FC<MobileItemProps> = ({
           <SVGItem size={24} src={getMobileItemIcon(subItem)} />
         </SubItemContainer>
       )}
-      <SVGItem size={isPanOrDish ? 64 : 48} src={getMobileItemIcon(item)} />
+      <SVGItem size={size || itemSize} src={getMobileItemIcon(item)} />
     </MobileItemContainer>
   )
 }
