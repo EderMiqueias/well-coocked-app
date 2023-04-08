@@ -23,6 +23,7 @@ export const ImmobileItem: React.FC<ImmobileItemProps> = ({
             item={subItem.item}
             subItem={subItem.subItem}
             size={56}
+            isSubItemCooked
           />
         </AbsoluteSubItemContainer>
       )}

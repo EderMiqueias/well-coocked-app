@@ -21,7 +21,7 @@ export const Indicatives: React.FC<IndicativesProps> = ({
   const getIngredientsIcons = () =>
     getDishIngredients().map(
       (item, index) =>
-        <MobileItem key={index} item={item} />
+        <MobileItem key={index} item={item} isItemCooked />
     );
   
   return (
