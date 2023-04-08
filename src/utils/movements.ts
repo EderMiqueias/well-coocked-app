@@ -31,6 +31,8 @@ export const getNewStateRunInstruction = (
   const newGameState = { ...gameState };
   const newCharacterState = { ...characterState };
 
+  newCharacterState.isWaiting = false;
+
   const { coords } = characterState;
   switch (instruction) {
     case Instructions.bottom:
@@ -102,7 +104,6 @@ export const getNewStateRunInstruction = (
       .isMainCharacter = true;
     newGameState[coords.y][coords.x].isMainCharacter = false;
     newGameState.timeLeft -= 2;
-    newCharacterState.isWaiting = false;
   } catch {
     newGameState.gameState = GameStates.droidHitItsHead;
     newCharacterState.coords = coords;
