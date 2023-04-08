@@ -66,13 +66,17 @@ export const Modal: React.FC<ModalProps> = ({
   const mustShowModal = () => gameState !== GameStates.started;
 
   return (
-    <Container hidden={mustShowModal()}>
-      <Img src={content.icon} />
-      <Text>{content.text}</Text>
-      <Text>Tempo restante: {timeLeft} Segundos</Text>
-      <Button onClick={onClick} color={content.buttonColor}>
-        {content.buttonText}
-      </Button>
-    </Container>
+    <>
+      {mustShowModal() && (
+        <Container>
+          <Img src={content.icon} />
+          <Text>{content.text}</Text>
+          <Text>Tempo restante: {timeLeft} Segundos</Text>
+          <Button onClick={onClick} color={content.buttonColor}>
+            {content.buttonText}
+          </Button>
+        </Container>
+      )}
+    </>
   );
 }
