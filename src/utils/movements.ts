@@ -35,6 +35,102 @@ const _getNewStateRunInstruction = (
 
   const { coords } = characterState;
   switch (instruction) {
+    case Instructions.grabRelease:
+      const immobileBlockItem = gameState[coords.y][coords.x].immobileItem;
+      const blockItem = gameState[coords.y][coords.x].mobileItem;
+      const blockItemIsFood = isFood(blockItem?.item);
+
+      const chaItem = characterState.subItem;
+      const chaItemIsFood = isFood(chaItem?.item)
+
+      if ((blockItem === undefined || chaItem === undefined)
+        || (chaItemIsFood && blockItemIsFood)) {
+        // BLOCO OU PERSONAGEM NAO POSSUEM ITEM
+        // OU AMBOS POSSUEM UM INGREDIENTE
+        if (immobileBlockItem?.inUse) {
+          newGameState.gameState = GameStates.caughtPanInUse
+        } else {
+          newCharacterState.subItem = blockItem;
+          newGameState[coords.y][coords.x].mobileItem = chaItem;
+        }
+      } else if (!blockItemIsFood && chaItemIsFood) {
+        // BLOCO POSSUI PANELA OU PRATO
+        // E PERSONAGEM POSSUI INGREDIENTE
+        if (blockItem.subItem) {
+          if (immobileBlockItem?.inUse) {
+            newGameState.gameState = GameStates.caughtPanInUse
+          } else {
+            newCharacterState.subItem = blockItem;
+            newGameState[coords.y][coords.x].mobileItem = chaItem;
+          }
+        } else {
+          newCharacterState.subItem = undefined;
+          newGameState[coords.y][coords.x].mobileItem = {
+            item: blockItem!.item,
+            subItem: chaItem?.item
+          };
+          newGameState[coords.y][coords.x].immobileItem = {
+            item: immobileBlockItem!.item,
+            inUse: true,
+            secsLeftToBeDone: 9
+          };
+          newGameState.immobileItemsInUse.push({
+            y: coords.y,
+            x: coords.x
+          })
+        }
+      } else if (!chaItemIsFood && blockItemIsFood) {
+        // BLOCO POSSUI INGREDIENTE
+        // E PERSONAGEM POSSUI PANELA OU PRATO
+        if (chaItem.subItem) {
+          newCharacterState.subItem = blockItem;
+          newGameState[coords.y][coords.x].mobileItem = chaItem;
+        } else {
+          newGameState[coords.y][coords.x].mobileItem = undefined;
+          newCharacterState.subItem = {
+            item: chaItem!.item,
+            subItem: blockItem?.item
+          };
+        }
+      } else {
+        // BLOCO E PISO POSSUEM PRATO OU PANELA
+        if (immobileBlockItem?.inUse) {
+          newGameState.gameState = GameStates.caughtPanInUse
+        } else {
+          if (chaItem.subItem) {
+            newCharacterState.subItem = {
+              item: chaItem.item,
+              subItem: undefined
+            };
+            newGameState[coords.y][coords.x].mobileItem = {
+              item: blockItem.item,
+              subItem: chaItem.subItem
+            };
+          } else if (blockItem.subItem) {
+            newCharacterState.subItem = {
+              item: chaItem.item,
+              subItem: blockItem.subItem
+            };
+            newGameState[coords.y][coords.x].mobileItem = {
+              item: blockItem.item,
+              subItem: undefined
+            };
+          } else {
+            newCharacterState.subItem = blockItem;
+            newGameState[coords.y][coords.x].mobileItem = chaItem;
+          }
+        }
+      }
+
+      newGameState.timeLeft -= 1;
+      return [newGameState, newCharacterState];
+    case Instructions.wait:
+      newCharacterState.isWaiting = true;
+      newGameState.timeLeft -= WAITING_TIMEOUT_SECONDS;
+      return [newGameState, newCharacterState];
+    case Instructions.interact:
+      // NOT IMPLEMENTED #YET#
+      break;
     case Instructions.bottom:
       newCharacterState.coords = {
         y: coords.y + 1,
@@ -58,66 +154,6 @@ const _getNewStateRunInstruction = (
         y: coords.y - 1,
         x: coords.x
       };
-      break;
-    case Instructions.grabRelease:
-      const immobileBlockItem = gameState[coords.y][coords.x].immobileItem;
-      const blockItem = gameState[coords.y][coords.x].mobileItem;
-      const blockItemIsFood = isFood(blockItem?.item);
-
-      const chaItem = characterState.subItem;
-      const chaItemIsFood = isFood(chaItem?.item)
-
-      if ((blockItem === undefined || chaItem === undefined)
-        || (chaItemIsFood && blockItemIsFood)) {
-        // BLOCO OU PERSONAGEM NAO POSSUEM ITEM
-        // OU AMBOS POSSUEM UM INGREDIENTE
-        newCharacterState.subItem = blockItem;
-        newGameState[coords.y][coords.x].mobileItem = chaItem;
-      } else if (!blockItemIsFood && chaItemIsFood) {
-        // BLOCO POSSUI PANELA OU PRATO
-        // E PERSONAGEM POSSUI INGREDIENTE
-        newCharacterState.subItem = undefined;
-        newGameState[coords.y][coords.x].mobileItem = {
-          item: blockItem!.item,
-          subItem: chaItem?.item
-        };
-        newGameState[coords.y][coords.x].immobileItem = {
-          item: immobileBlockItem!.item,
-          inUse: true,
-          secsLeftToBeDone: 9
-        };
-        newGameState.immobileItemsInUse.push({
-          y: coords.y,
-          x: coords.x
-        })
-      } else if (!chaItemIsFood && blockItemIsFood) {
-        // BLOCO POSSUI INGREDIENTE
-        // E PERSONAGEM POSSUI PANELA OU PRATO
-        newGameState[coords.y][coords.x].mobileItem = undefined;
-        newCharacterState.subItem = {
-          item: chaItem!.item,
-          subItem: blockItem?.item
-        };
-      } else {
-        // BLOCO E PISO POSSUEM PRATO OU PANELA
-        newCharacterState.subItem = {
-          item: chaItem.item,
-          subItem: undefined
-        };
-        newGameState[coords.y][coords.x].mobileItem = {
-          item: blockItem.item,
-          subItem: chaItem.subItem
-        };
-      }
-
-      newGameState.timeLeft -= 1;
-      return [newGameState, newCharacterState];
-    case Instructions.wait:
-      newCharacterState.isWaiting = true;
-      newGameState.timeLeft -= WAITING_TIMEOUT_SECONDS;
-      return [newGameState, newCharacterState];
-    case Instructions.interact:
-      // NOT IMPLEMENTED #YET#
       break;
   }
   try {
