@@ -9,3 +9,4 @@ export * from './InstructionsButtons';
 export * from './MainCharacter';
 export * from './Indacatives';
 export * from './Modal';
+export * from './ProgressBar';
