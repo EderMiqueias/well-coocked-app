@@ -8,7 +8,7 @@ import { Button, Container, Img, Text } from "./styles";
 type ModalProps = {
   gameState: GameStates;
   onClick: () => void;
-  timeLeft?: number;
+  timeLeft: number;
 };
 
 type content = {
@@ -78,7 +78,11 @@ export const Modal: React.FC<ModalProps> = ({
         <Container>
           <Img src={content.icon} />
           <Text>{content.text}</Text>
-          <Text>Tempo restante: {timeLeft} Segundos</Text>
+          {timeLeft > 0 ? (
+            <Text>Tempo restante: {timeLeft} Segundos</Text>
+          ) : (
+            <Text>Tempo Esgotado!</Text>
+          )}
           <Button onClick={onClick} color={content.buttonColor}>
             {content.buttonText}
           </Button>

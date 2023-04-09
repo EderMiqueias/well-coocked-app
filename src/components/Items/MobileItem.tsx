@@ -21,7 +21,7 @@ export const MobileItem: React.FC<MobileItemProps> = ({
   isSubItemCooked
 }) => {
   const isPanOrDish = [MobileItems.pan, MobileItems.dish].includes(item);
-  const itemSize = isPanOrDish ? 64 : 48;
+  const itemSize = 48;
 
   const itemIcon = isItemCooked
     ? getCookedIcon(item)

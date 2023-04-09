@@ -194,5 +194,8 @@ export const getNewStateRunInstruction = (
     }
   });
 
+  if (newGameState.timeLeft <= 0)
+    newGameState.gameState = GameStates.timeOver;
+
   return [newGameState, newCharacterState];
 };
