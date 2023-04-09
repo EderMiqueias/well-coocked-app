@@ -40,6 +40,13 @@ export const Modal: React.FC<ModalProps> = ({
       buttonColor: '#ed6755',
       buttonAction: onClick
     },
+    caughtPanInUse: {
+      text: 'Ops! Cheff Droid removeu um ingrediente que ainda não estava cozido.',
+      icon: CriticalIcon,
+      buttonText: 'TentarNovamente',
+      buttonColor: '#ed6755',
+      buttonAction: onClick
+    },
     fail: {
       text: 'Hmm... O que estavamos fazendo mesmo???',
       icon: InterrogationIcon,

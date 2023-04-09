@@ -20,7 +20,8 @@ export enum GameStates {
   completed = 'completed', // NIVEL CONCLUIDO
   droidHitItsHead = 'droidHitItsHead', // AVANÇOU NUMA PAREDE
   timeOver = 'timeOver', // ACABOU O TEMPO
-  fail = 'fail' // ANDOU DEMAIS E NÃO FEZ NADA
+  fail = 'fail', // ANDOU DEMAIS E NÃO FEZ NADA
+  caughtPanInUse = 'caughtPanInUse' // TENTOU REMOVER UMA PANELA QUE AINDA NAO ESTAVA PRONTA
 };
 
 export type Coords = {
