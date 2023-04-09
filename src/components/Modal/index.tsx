@@ -3,7 +3,7 @@ import React from "react";
 import { GameStates } from "@/types";
 import { CriticalIcon, InterrogationIcon, LateIcon, SuccessIcon } from "@/assets";
 
-import { Button, Container, Img, Text } from "./styles";
+import { Button, Container, Img, Text, TipText } from "./styles";
 
 type ModalProps = {
   gameState: GameStates;
@@ -17,6 +17,7 @@ type content = {
   buttonText: string;
   buttonColor: string;
   buttonAction: () => void;
+  subText?: string;
 };
 
 export const Modal: React.FC<ModalProps> = ({
@@ -47,8 +48,16 @@ export const Modal: React.FC<ModalProps> = ({
       buttonColor: '#ed6755',
       buttonAction: onClick
     },
+    rowFoodOnDish: {
+      text: 'Prefere mal passado? Cheff Droid usou um ingrediente que ainda não estava cozido.',
+      icon: CriticalIcon,
+      buttonText: 'TentarNovamente',
+      buttonColor: '#ed6755',
+      buttonAction: onClick
+    },
     fail: {
       text: 'Hmm... O que estavamos fazendo mesmo???',
+      subText: 'Cheff Droid deve colocar os ingredientes cozidos em algum prato.',
       icon: InterrogationIcon,
       buttonText: 'TentarNovamente',
       buttonColor: '#ed6755',
@@ -78,12 +87,15 @@ export const Modal: React.FC<ModalProps> = ({
         <Container>
           <Img src={content.icon} />
           <Text>{content.text}</Text>
+          {content.subText && (
+            <TipText>{content.subText}</TipText>
+          )}
           {timeLeft > 0 ? (
             <Text>Tempo restante: {timeLeft} Segundos</Text>
           ) : (
             <Text>Tempo Esgotado!</Text>
           )}
-          <Button onClick={onClick} color={content.buttonColor}>
+          <Button onClick={content.buttonAction} color={content.buttonColor}>
             {content.buttonText}
           </Button>
         </Container>

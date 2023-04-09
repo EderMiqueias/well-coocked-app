@@ -21,7 +21,8 @@ export enum GameStates {
   droidHitItsHead = 'droidHitItsHead', // AVANÇOU NUMA PAREDE
   timeOver = 'timeOver', // ACABOU O TEMPO
   fail = 'fail', // ANDOU DEMAIS E NÃO FEZ NADA
-  caughtPanInUse = 'caughtPanInUse' // TENTOU REMOVER UMA PANELA QUE AINDA NAO ESTAVA PRONTA
+  caughtPanInUse = 'caughtPanInUse', // TENTOU REMOVER UMA PANELA QUE AINDA NAO ESTAVA PRONTA
+  rowFoodOnDish = 'rowFoodOnDish' // TENTOU COLOCAR COMIDA CRUA NO PRATO
 };
 
 export type Coords = {

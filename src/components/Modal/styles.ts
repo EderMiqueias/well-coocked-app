@@ -18,7 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button<{ color: string }> `
-  background-color: ${({color}) => color};
+  background-color: ${({ color }) => color};
   border: none;
   border-radius: 5px;
   width: 200px;
@@ -26,12 +26,19 @@ export const Button = styled.button<{ color: string }> `
   font-size: 16px;
   color: white;
   box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
+  margin-top: 28px;
 `;
 
 export const Text = styled.p`
-  margin-bottom: 40px;
+  margin-bottom: 12px;
   font-size: 18px;
   font-weight: 700;
+`;
+
+export const TipText = styled.p`
+  font-weight: 700;
+  color: gray;
+  font-size: 18px;
 `;
 
 export const Img = styled.img`

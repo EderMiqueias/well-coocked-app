@@ -64,20 +64,24 @@ const _getNewStateRunInstruction = (
             newGameState[coords.y][coords.x].mobileItem = chaItem;
           }
         } else {
-          newCharacterState.subItem = undefined;
-          newGameState[coords.y][coords.x].mobileItem = {
-            item: blockItem!.item,
-            subItem: chaItem?.item
-          };
-          newGameState[coords.y][coords.x].immobileItem = {
-            item: immobileBlockItem!.item,
-            inUse: true,
-            secsLeftToBeDone: 9
-          };
-          newGameState.immobileItemsInUse.push({
-            y: coords.y,
-            x: coords.x
-          })
+          if (immobileBlockItem && blockItem.item === MobileItems.pan) {
+            newCharacterState.subItem = undefined;
+            newGameState[coords.y][coords.x].mobileItem = {
+              item: blockItem!.item,
+              subItem: chaItem?.item
+            };
+            newGameState[coords.y][coords.x].immobileItem = {
+              item: immobileBlockItem.item,
+              inUse: true,
+              secsLeftToBeDone: 9
+            };
+            newGameState.immobileItemsInUse.push({
+              y: coords.y,
+              x: coords.x
+            });
+          } else {
+            newGameState.gameState = GameStates.rowFoodOnDish
+          }
         }
       } else if (!chaItemIsFood && blockItemIsFood) {
         // BLOCO POSSUI INGREDIENTE
@@ -106,6 +110,10 @@ const _getNewStateRunInstruction = (
               item: blockItem.item,
               subItem: chaItem.subItem
             };
+            
+            // NIVEL CONCLUIDO
+            if (blockItem.item === MobileItems.dish)
+              newGameState.gameState = GameStates.completed;
           } else if (blockItem.subItem) {
             newCharacterState.subItem = {
               item: chaItem.item,
@@ -115,6 +123,10 @@ const _getNewStateRunInstruction = (
               item: blockItem.item,
               subItem: undefined
             };
+            
+            // NIVEL CONCLUIDO
+            if (chaItem.item === MobileItems.dish)
+              newGameState.gameState = GameStates.completed;
           } else {
             newCharacterState.subItem = blockItem;
             newGameState[coords.y][coords.x].mobileItem = chaItem;

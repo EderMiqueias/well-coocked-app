@@ -144,18 +144,29 @@ const Nivel1 = () => {
       const [timeoutMs, shouldContinue] = runInstruction(
         instructionState.intructionQueue[instructionState.currentIntructionIndex]
       );
-      if (!isLastInstruction() && shouldContinue) {
-        setTimeout(() => {
-          setInstructionState((oldState) => ({
+      if (shouldContinue) {
+        if (!isLastInstruction()) {
+          setTimeout(() => {
+            setInstructionState((oldState) => ({
+              ...oldState,
+              currentIntructionIndex: oldState.currentIntructionIndex + 1
+            }));
+            setMustRunNextInstruction(true);
+          }, timeoutMs);
+        } else {
+          setGameState((oldState) => ({
             ...oldState,
-            currentIntructionIndex: oldState.currentIntructionIndex + 1
+            gameState: GameStates.fail
           }));
-          setMustRunNextInstruction(true);
-        }, timeoutMs);
+        }
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])
+
+  // useEffect(() => {
+  //   if (gameState.timeLeft < 1)
+  // }, [])
 
   return (
     <NivelContainer>
