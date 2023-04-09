@@ -21,13 +21,20 @@ export enum ImmobileItems {
 };
 
 export type MobileItemState = {
-  item: MobileItems,
-  subItem?: MobileItems
+  item: MobileItems;
+  subItem?: MobileItems;
+};
+
+export type ImmobileItemState = {
+  item: ImmobileItems;
+  subItem?: MobileItemState;
+  inUse?: boolean;
+  secsLeftToBeDone?: number;
 };
 
 export type BlockState = {
   isMainCharacter?: boolean;
-  immobileItem?: ImmobileItems;
+  immobileItem?: ImmobileItemState;
   mobileItem?: MobileItemState;
 };
 

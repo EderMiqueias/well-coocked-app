@@ -51,7 +51,9 @@ const getNivel1InitialState = (): GameSpaceState => {
   } as BlockState);
   updateBlock(state, 2, 3, {
     mobileItem: getMobileIconState(MobileItems.pan),
-    immobileItem: ImmobileItems.stove
+    immobileItem: {
+      item: ImmobileItems.stove
+    }
   } as BlockState);
   updateBlock(state, 2, 4, {
     mobileItem: getMobileIconState(MobileItems.dish)

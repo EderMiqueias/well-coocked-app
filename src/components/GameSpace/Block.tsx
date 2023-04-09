@@ -33,7 +33,7 @@ export const Block: React.FC<BlockProps> = ({
         )}
         {state.immobileItem && (
           <ImmobileItem
-            item={state.immobileItem}
+            state={state.immobileItem}
             subItem={isPan ? state.mobileItem : undefined}
           />
         )}

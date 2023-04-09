@@ -1,20 +1,24 @@
 import React from "react";
-import { ImmobileItems, MobileItemState, MobileItems } from "@/types";
+import { ImmobileItemState, MobileItemState, MobileItems } from "@/types";
 
 import { AbsoluteSubItemContainer, ImmobileItemContainer, SVGItem } from "./styles";
 import { getImmobileItemIcon } from "@/utils";
 import { MobileItem } from "./MobileItem";
+import { ProgressBar } from "../ProgressBar";
 
 type ImmobileItemProps = {
-  item: ImmobileItems;
+  state: ImmobileItemState;
   subItem?: MobileItemState;
 };
 
 export const ImmobileItem: React.FC<ImmobileItemProps> = ({
-  item,
+  state,
   subItem
 }) => {
   const isPan = subItem?.item === MobileItems.pan;
+  const isCooking = !!(state.inUse && state.secsLeftToBeDone);
+
+  const getProgress = () => state.secsLeftToBeDone! * 12.5;
   return (
     <ImmobileItemContainer>
       {isPan && (
@@ -27,7 +31,10 @@ export const ImmobileItem: React.FC<ImmobileItemProps> = ({
           />
         </AbsoluteSubItemContainer>
       )}
-      <SVGItem size={64} src={getImmobileItemIcon(item)} />
+      <SVGItem size={64} src={getImmobileItemIcon(state.item)} />
+      {isCooking && (
+        <ProgressBar progress={getProgress()} />
+      )}
     </ImmobileItemContainer>
-  )
-}
+  );
+};

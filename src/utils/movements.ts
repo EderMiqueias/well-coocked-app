@@ -1,4 +1,4 @@
-import { WAITING_TIMEOUT_MS } from "@/constants";
+import { WAITING_TIMEOUT_SECONDS } from "@/constants";
 import {
   BlockState,
   GameSpaceState,
@@ -93,7 +93,7 @@ export const getNewStateRunInstruction = (
       return [newGameState, newCharacterState];
     case Instructions.wait:
       newCharacterState.isWaiting = true;
-      newGameState.timeLeft -= WAITING_TIMEOUT_MS;
+      newGameState.timeLeft -= WAITING_TIMEOUT_SECONDS;
       return [newGameState, newCharacterState];
     case Instructions.interact:
       // NOT IMPLEMENTED #YET#
