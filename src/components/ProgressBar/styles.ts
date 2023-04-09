@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { ANIMATION_TIME_CSS } from "@/constants";
+
 // Merits of https://css-tricks.com/css3-progress-bars/
 
 export const Container = styled.div`
@@ -37,5 +39,5 @@ export const Bar = styled.span<{ progress: number }>`
     inset 0 -2px 6px rgba(0,0,0,0.4);
   position: relative;
   overflow: hidden;
-  transition: width 2s linear;
+  transition: width ${ANIMATION_TIME_CSS} linear;
 `;

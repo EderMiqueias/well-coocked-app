@@ -23,7 +23,7 @@ export const isFood = (item?: MobileItems) => item && ![
   MobileItems.pan
 ].includes(item);
 
-export const getNewStateRunInstruction = (
+const _getNewStateRunInstruction = (
   gameState: GameSpaceState,
   characterState: MainCharacterState,
   instruction: Instructions
@@ -60,25 +60,46 @@ export const getNewStateRunInstruction = (
       };
       break;
     case Instructions.grabRelease:
+      const immobileBlockItem = gameState[coords.y][coords.x].immobileItem;
       const blockItem = gameState[coords.y][coords.x].mobileItem;
-      const chaItem = characterState.subItem;
+      const blockItemIsFood = isFood(blockItem?.item);
 
-      if (blockItem === undefined || chaItem === undefined) {
+      const chaItem = characterState.subItem;
+      const chaItemIsFood = isFood(chaItem?.item)
+
+      if ((blockItem === undefined || chaItem === undefined)
+        || (chaItemIsFood && blockItemIsFood)) {
+        // BLOCO OU PERSONAGEM NAO POSSUEM ITEM
+        // OU AMBOS POSSUEM UM INGREDIENTE
         newCharacterState.subItem = blockItem;
         newGameState[coords.y][coords.x].mobileItem = chaItem;
-      } else if (!isFood(blockItem?.item) && isFood(chaItem?.item)) {
+      } else if (!blockItemIsFood && chaItemIsFood) {
+        // BLOCO POSSUI PANELA OU PRATO
+        // E PERSONAGEM POSSUI INGREDIENTE
         newCharacterState.subItem = undefined;
         newGameState[coords.y][coords.x].mobileItem = {
           item: blockItem!.item,
           subItem: chaItem?.item
         };
-      } else if (!isFood(chaItem?.item) && isFood(blockItem?.item)) {
+        newGameState[coords.y][coords.x].immobileItem = {
+          item: immobileBlockItem!.item,
+          inUse: true,
+          secsLeftToBeDone: 9
+        };
+        newGameState.immobileItemsInUse.push({
+          y: coords.y,
+          x: coords.x
+        })
+      } else if (!chaItemIsFood && blockItemIsFood) {
+        // BLOCO POSSUI INGREDIENTE
+        // E PERSONAGEM POSSUI PANELA OU PRATO
         newGameState[coords.y][coords.x].mobileItem = undefined;
         newCharacterState.subItem = {
           item: chaItem!.item,
           subItem: blockItem?.item
         };
       } else {
+        // BLOCO E PISO POSSUEM PRATO OU PANELA
         newCharacterState.subItem = {
           item: chaItem.item,
           subItem: undefined
@@ -108,5 +129,34 @@ export const getNewStateRunInstruction = (
     newGameState.gameState = GameStates.droidHitItsHead;
     newCharacterState.coords = coords;
   }
+  return [newGameState, newCharacterState];
+};
+
+// MIDLAWARE
+export const getNewStateRunInstruction = (
+  gameState: GameSpaceState,
+  characterState: MainCharacterState,
+  instruction: Instructions
+): [GameSpaceState, MainCharacterState] => {
+  const [newGameState, newCharacterState] = _getNewStateRunInstruction(
+    gameState,
+    characterState,
+    instruction
+  );
+  // SUBTRAI TEMPO RESTANTE PARA ITEMS EM USO
+  const timeDiff = gameState.timeLeft - newGameState.timeLeft;
+  gameState.immobileItemsInUse.forEach((itemCoords) => {
+    const item = newGameState[itemCoords.y][itemCoords.x].immobileItem;
+
+    if (item && item.secsLeftToBeDone) {
+      const secsLeft = item.secsLeftToBeDone - timeDiff;
+      newGameState[itemCoords.y][itemCoords.x].immobileItem = {
+        ...item,
+        secsLeftToBeDone: secsLeft,
+        inUse: secsLeft > 0
+      };
+    }
+  });
+
   return [newGameState, newCharacterState];
 };

@@ -16,9 +16,9 @@ export const ImmobileItem: React.FC<ImmobileItemProps> = ({
   subItem
 }) => {
   const isPan = subItem?.item === MobileItems.pan;
-  const isCooking = !!(state.inUse && state.secsLeftToBeDone);
+  const isCooking = !!(state.inUse || state.secsLeftToBeDone !== undefined);
 
-  const getProgress = () => state.secsLeftToBeDone! * 12.5;
+  const getProgress = () => 100 - (state.secsLeftToBeDone! * 12.5);
   return (
     <ImmobileItemContainer>
       {isPan && (

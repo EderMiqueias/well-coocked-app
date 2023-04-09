@@ -1,8 +1,3 @@
-export type Coords = {
-  y: number;
-  x: number;
-};
-
 export enum MobileItems {
   meat = 'meat',
   potato = 'potato',
@@ -18,6 +13,19 @@ export enum MobileItems {
 export enum ImmobileItems {
   stove = 'stove',
   cuttingBoard = 'cutting_board'
+};
+
+export enum GameStates {
+  started = 'started', // NIVEL INICIADO OU REINICIADO
+  completed = 'completed', // NIVEL CONCLUIDO
+  droidHitItsHead = 'droidHitItsHead', // AVANÇOU NUMA PAREDE
+  timeOver = 'timeOver', // ACABOU O TEMPO
+  fail = 'fail' // ANDOU DEMAIS E NÃO FEZ NADA
+};
+
+export type Coords = {
+  y: number;
+  x: number;
 };
 
 export type MobileItemState = {
@@ -38,17 +46,10 @@ export type BlockState = {
   mobileItem?: MobileItemState;
 };
 
-export enum GameStates {
-  started = 'started', // NIVEL INICIADO OU REINICIADO
-  completed = 'completed', // NIVEL CONCLUIDO
-  droidHitItsHead = 'droidHitItsHead', // AVANÇOU NUMA PAREDE
-  timeOver = 'timeOver', // ACABOU O TEMPO
-  fail = 'fail' // ANDOU DEMAIS E NÃO FEZ NADA
-};
-
 export type GameSpaceState = {
   gameState: GameStates;
   timeLeft: number;
+  immobileItemsInUse: Coords[];
   [y: number]: {
     [x: number]: BlockState;
   }

@@ -13,7 +13,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({
 }) => {
   return (
     <Container>
-      {progress === 100
+      {progress >= 100
         ? (
           <ImageIcon
             height="28px"
