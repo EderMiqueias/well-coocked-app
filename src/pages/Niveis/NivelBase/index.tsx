@@ -12,24 +12,19 @@ import {
   Modal
 } from '@/components';
 import {
-  BlockState,
+  Coords,
   Dishs,
   GameSpaceState,
   GameStates,
-  ImmobileItems,
   IndexedInstruction,
   Instructions,
   IntructionQueueState,
-  MainCharacterState,
-  MobileItems
+  MainCharacterState
 } from '@/types';
 import {
   getInitialCharacterState,
   getInitialInstructionQueueState,
-  getNivelInitialState,
-  getNewStateRunInstruction,
-  updateBlock,
-  getMobileIconState
+  getNewStateRunInstruction
 } from '@/utils';
 
 import {
@@ -41,36 +36,22 @@ import {
 } from '../styles';
 import { LONG_TIMEOUT_MS, SHORT_TIMEOUT_MS, TIMEOUT_MS } from '@/constants';
 
-const getNivel1InitialState = (): GameSpaceState => {
-  let state = getNivelInitialState(4, 4, 30);
-
-  updateBlock(state, 2, 1, {
-    isMainCharacter: true
-  } as BlockState);
-  updateBlock(state, 2, 2, {
-    mobileItem: getMobileIconState(MobileItems.potato)
-  } as BlockState);
-  updateBlock(state, 2, 3, {
-    mobileItem: getMobileIconState(MobileItems.pan),
-    immobileItem: {
-      item: ImmobileItems.stove
-    }
-  } as BlockState);
-  updateBlock(state, 2, 4, {
-    mobileItem: getMobileIconState(MobileItems.dish)
-  } as BlockState);
-
-  return state;
+type NivelBaseProps = {
+  getInitialState: () => GameSpaceState;
+  initialCharacterCoords: Coords
 };
 
-const Nivel1 = () => {
+const NivelBase = ({
+  getInitialState,
+  initialCharacterCoords
+}: NivelBaseProps) => {
   const navigate = useNavigate();
   const [gameState, setGameState] =
-    useState<GameSpaceState>(getNivel1InitialState());
+    useState<GameSpaceState>(getInitialState());
   const [instructionState, setInstructionState] =
     useState<IntructionQueueState>(getInitialInstructionQueueState());
   const [characterState, setCharacterState] =
-    useState<MainCharacterState>(getInitialCharacterState({ y: 2, x: 1 }));
+    useState<MainCharacterState>(getInitialCharacterState(initialCharacterCoords));
 
   const [mustRunNextInstruction, setMustRunNextInstruction] = useState(false);
 
@@ -79,7 +60,7 @@ const Nivel1 = () => {
       subItem: undefined,
       coords: { y: 2, x: 1 }
     });
-    setGameState(getNivel1InitialState());
+    setGameState(getInitialState());
     setInstructionState(
       (oldValue) => ({
         ...oldValue,
@@ -166,10 +147,6 @@ const Nivel1 = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mustRunNextInstruction])
 
-  // useEffect(() => {
-  //   if (gameState.timeLeft < 1)
-  // }, [])
-
   return (
     <NivelContainer>
       <Modal
@@ -201,4 +178,4 @@ const Nivel1 = () => {
   );
 }
 
-export { Nivel1 };
+export { NivelBase };
