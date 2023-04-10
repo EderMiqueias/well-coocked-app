@@ -5,7 +5,7 @@ import { NivelBase } from "./NivelBase";
 
 export const Nivel3 = () => {
   const initialCoords = { y: 3, x: 4 } as Coords;
-  const dish = Dishs.feijoada;
+  const dish = Dishs.baiao;
 
   const getInitialState = (): GameSpaceState => {
     let state = getNivelInitialState(4, 4, dish, 50);
