@@ -4,10 +4,12 @@ import { GameStates } from "@/types";
 import { CriticalIcon, InterrogationIcon, LateIcon, SuccessIcon } from "@/assets";
 
 import { Button, Container, Img, Text, TipText } from "./styles";
+import { NavigateFunction } from "react-router-dom";
 
 type ModalProps = {
   gameState: GameStates;
   onClick: () => void;
+  navigate: NavigateFunction;
   timeLeft: number;
 };
 
@@ -23,9 +25,10 @@ type content = {
 export const Modal: React.FC<ModalProps> = ({
   gameState,
   onClick,
+  navigate,
   timeLeft
 }) => {
-  const backToNiveis = () => window.open('/niveis');
+  const backToNiveis = () => navigate('/niveis');
   const allContents: Record<GameStates, content> = {
     completed: {
       text: 'Parabéns! Cheff Droid fez a receita!',

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import {
   BackIconComponent,
@@ -63,6 +64,7 @@ const getNivel1InitialState = (): GameSpaceState => {
 };
 
 const Nivel1 = () => {
+  const navigate = useNavigate();
   const [gameState, setGameState] =
     useState<GameSpaceState>(getNivel1InitialState());
   const [instructionState, setInstructionState] =
@@ -173,6 +175,7 @@ const Nivel1 = () => {
       <Modal
         gameState={gameState.gameState}
         onClick={restartGameSTate}
+        navigate={navigate}
         timeLeft={gameState.timeLeft}
       />
       <BackIconComponent backTo="/niveis" />

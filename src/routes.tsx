@@ -1,5 +1,9 @@
 import React from "react";
-import { Route, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import {
+    Route,
+    createBrowserRouter,
+    createRoutesFromElements
+} from "react-router-dom";
 
 import { HomePage, NiveisPage, SobrePage, Nivel1 } from "@/pages";
 
