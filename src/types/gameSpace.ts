@@ -1,3 +1,6 @@
+import { Dishs } from "./dish";
+import { IntructionQueueState } from "./instructions";
+
 export enum MobileItems {
   meat = 'meat',
   potato = 'potato',
@@ -25,6 +28,12 @@ export enum GameStates {
   rowFoodOnDish = 'rowFoodOnDish' // TENTOU COLOCAR COMIDA CRUA NO PRATO
 };
 
+export enum NiveisPageName {
+  nivel1 = 'nivel_1',
+  nivel2 = 'nivel_2',
+  nivel3 = 'nivel_3'
+}
+
 export type Coords = {
   y: number;
   x: number;
@@ -51,6 +60,7 @@ export type BlockState = {
 export type GameSpaceState = {
   gameState: GameStates;
   timeLeft: number;
+  dish: Dishs;
   immobileItemsInUse: Coords[];
   [y: number]: {
     [x: number]: BlockState;
@@ -61,4 +71,14 @@ export type MainCharacterState = {
   coords: Coords;
   isWaiting?: boolean;
   subItem?: MobileItemState;
+};
+
+export type NivelState = {
+  gameState: GameSpaceState;
+  characterState: MainCharacterState;
+  queueState: IntructionQueueState;
+};
+
+export type NiveisState = {
+  [nivelName in NiveisPageName]: NivelState | null;
 };

@@ -1,6 +1,7 @@
 import {
   BlockState,
   Coords,
+  Dishs,
   GameSpaceState,
   GameStates,
   IntructionQueueState,
@@ -18,11 +19,13 @@ export const getVoidBlockState = (): BlockState => ({
 export const getNivelInitialState = (
   yCount: number,
   xCount: number,
+  dish: Dishs,
   timeLeft?: number
 ): GameSpaceState => {
   let state: GameSpaceState = {
     gameState: GameStates.started,
     timeLeft: timeLeft || 60,
+    dish: dish,
     immobileItemsInUse: []
   };
   for (let y = 1; y <= yCount; y++) {
