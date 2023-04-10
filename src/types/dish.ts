@@ -1,5 +1,7 @@
 export enum Dishs {
   pure = 'purê',
+  arroz = 'arroz',
+  feijoada = 'feijoada',
   escondidinho = 'escondidinho',
   achadinho = 'achadinho',
   strogonoff = 'strogonoff',

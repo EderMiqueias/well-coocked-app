@@ -13,7 +13,6 @@ import {
 } from '@/components';
 import {
   Coords,
-  Dishs,
   GameSpaceState,
   GameStates,
   IndexedInstruction,
@@ -161,7 +160,7 @@ const NivelBase = ({
           <Droid characterState={characterState} />
         </GameSpace>
         <IndicativosContainer>
-          <Indicatives dish={Dishs.pure} secondsLeft={gameState.timeLeft} />
+          <Indicatives dish={gameState.dish} secondsLeft={gameState.timeLeft} />
           <RunButtonContainer>
             <Button type="run" onPress={run} />
           </RunButtonContainer>

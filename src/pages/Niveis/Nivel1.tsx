@@ -1,12 +1,14 @@
 import { getMobileIconState, getNivelInitialState, updateBlock } from "@/utils";
-import { BlockState, Coords, GameSpaceState, ImmobileItems, MobileItems } from "@/types";
+import { BlockState, Coords, Dishs, GameSpaceState, ImmobileItems, MobileItems } from "@/types";
 
 import { NivelBase } from "./NivelBase";
 
 export const Nivel1 = () => {
   const initialCoords = { y: 2, x: 1 } as Coords;
+  const dish = Dishs.pure;
+
   const getInitialState = (): GameSpaceState => {
-    let state = getNivelInitialState(4, 4, 30);
+    let state = getNivelInitialState(4, 4, dish, 30);
   
     updateBlock(state, initialCoords.y, initialCoords.x, {
       isMainCharacter: true
