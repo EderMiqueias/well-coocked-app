@@ -9,7 +9,7 @@ export { default as SuccessIcon } from './png/success.png';
 export { default as Temp8Secs } from './png/temp-8secs.png';
 export { default as MassaCooked } from './png/massa-cooked.png';
 export { default as CuttingBoard } from './png/cutting-board.png';
-export { default as Rice } from './png/rice2.png';
+export { default as RiceCooked } from './png/rice-cooked.png';
 
 
 export { default as ArrowBottom } from './svg/arrow-bottom.svg';
@@ -35,8 +35,8 @@ export { default as Pan } from './svg/pan.svg';
 export { default as Potato } from './svg/potato.svg';
 export { default as PotatoCooked } from './svg/potato-cooked.svg';
 export { default as ReleaseAction } from './svg/release.svg';
-// export { default as Rice } from './svg/rice.svg';
-export { default as RiceCooked } from './svg/rice-cooked.svg';
+export { default as Rice } from './svg/rice.svg';
+// export { default as RiceCooked } from './svg/rice-cooked.svg';
 export { default as Stove } from './svg/stove.svg';
 export { default as Tomato } from './svg/tomato.svg';
 export { default as TomatoCooked } from './svg/tomato-cooked.svg';
