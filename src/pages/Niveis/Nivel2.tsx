@@ -4,7 +4,7 @@ import { BlockState, Coords, Dishs, GameSpaceState, ImmobileItems, MobileItems }
 import { NivelBase } from "./NivelBase";
 
 export const Nivel2 = () => {
-  const initialCoords = { y: 3, x: 1 } as Coords;
+  const initialCoords = { y: 3, x: 2 } as Coords;
   const dish = Dishs.arroz;
 
   const getInitialState = (): GameSpaceState => {
@@ -13,16 +13,24 @@ export const Nivel2 = () => {
     updateBlock(state, initialCoords.y, initialCoords.x, {
       isMainCharacter: true
     } as BlockState);
-    updateBlock(state, 2, 2, {
-      mobileItem: getMobileIconState(MobileItems.potato)
+    updateBlock(state, 3, 2, {
+      mobileItem: getMobileIconState(MobileItems.rice)
     } as BlockState);
-    updateBlock(state, 2, 3, {
-      mobileItem: getMobileIconState(MobileItems.pan),
+    updateBlock(state, 3, 1, {
+      mobileItem: getMobileIconState(MobileItems.pan)
+    } as BlockState);
+    updateBlock(state, 2, 1, {
       immobileItem: {
         item: ImmobileItems.stove
       }
     } as BlockState);
     updateBlock(state, 2, 4, {
+      mobileItem: getMobileIconState(MobileItems.pan),
+      immobileItem: {
+        item: ImmobileItems.stove
+      }
+    } as BlockState);
+    updateBlock(state, 1, 2, {
       mobileItem: getMobileIconState(MobileItems.dish)
     } as BlockState);
 
