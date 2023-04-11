@@ -13,6 +13,9 @@ const HomePage = () => {
                 <Anchor url="/niveis" >
                     <Button text='Jogar' type='menu' />
                 </Anchor>
+                <Anchor url="/tutorial">
+                    <Button text='Tutorial' type='menu' />
+                </Anchor>
                 <Anchor url="/sobre">
                     <Button text='Sobre o jogo' type='menu' />
                 </Anchor>

@@ -11,13 +11,15 @@ import {
     SobrePage,
     Nivel1,
     Nivel2,
-    Nivel3
+    Nivel3,
+    TutorialPage
 } from "@/pages";
 
 const Routes = createBrowserRouter(
     createRoutesFromElements(
         <>
             <Route path="/" element={<HomePage />} />
+            <Route path="/tutorial" element={<TutorialPage />} />
             <Route path="/sobre" element={<SobrePage />} />
             <Route path="/niveis" element={<NiveisPage />} />
             <Route path="/niveis/1" element={<Nivel1 />} />
