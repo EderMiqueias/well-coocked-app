@@ -17,7 +17,7 @@ export const NivelContainer = styled.div`
   display: block;
   color: white;
   max-height: 768px;
-  background-color: #ca3433;
+  background-color: salmon;
   width: 1024px;
   border-radius: 15px;
 `;
