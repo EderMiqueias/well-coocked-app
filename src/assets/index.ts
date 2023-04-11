@@ -17,7 +17,7 @@ export { default as TutorialPic4 } from './png/well-coocked-tutorial-4.png';
 export { default as TutorialPic5 } from './png/well-coocked-tutorial-5.png';
 export { default as TutorialPic6 } from './png/well-coocked-tutorial-6.png';
 export { default as TutorialPic7 } from './png/well-coocked-tutorial-7.png';
-
+export { default as TutorialPic8 } from './png/well-coocked-tutorial-8.png';
 
 export { default as ArrowBottom } from './svg/arrow-bottom.svg';
 export { default as ArrowLeft } from './svg/arrow-left.svg';
