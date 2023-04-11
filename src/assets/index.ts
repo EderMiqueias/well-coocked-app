@@ -10,6 +10,13 @@ export { default as Temp8Secs } from './png/temp-8secs.png';
 export { default as MassaCooked } from './png/massa-cooked.png';
 export { default as CuttingBoard } from './png/cutting-board.png';
 export { default as RiceCooked } from './png/rice-cooked.png';
+export { default as TutorialPic1 } from './png/well-coocked-tutorial-1.png';
+export { default as TutorialPic2 } from './png/well-coocked-tutorial-2.png';
+export { default as TutorialPic3 } from './png/well-coocked-tutorial-3.png';
+export { default as TutorialPic4 } from './png/well-coocked-tutorial-4.png';
+export { default as TutorialPic5 } from './png/well-coocked-tutorial-5.png';
+export { default as TutorialPic6 } from './png/well-coocked-tutorial-6.png';
+export { default as TutorialPic7 } from './png/well-coocked-tutorial-7.png';
 
 
 export { default as ArrowBottom } from './svg/arrow-bottom.svg';
