@@ -57,7 +57,7 @@ const NivelBase = ({
   const restartGameSTate = () => {
     setCharacterState({
       subItem: undefined,
-      coords: { y: 2, x: 1 }
+      coords: initialCharacterCoords
     });
     setGameState(getInitialState());
     setInstructionState(
