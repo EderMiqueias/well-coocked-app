@@ -10,3 +10,4 @@ export * from './MainCharacter';
 export * from './Indacatives';
 export * from './Modal';
 export * from './ProgressBar';
+export * from './Tooltip'
