@@ -5,11 +5,15 @@ import { IntructionQueueState } from "@/types";
 import { QueueContainer, Container } from "./styles";
 import { InstructionQueueElement } from "./Instruction";
 import { HighlightTitle } from "@/common";
+import { Tooltip } from "../Tooltip";
 
 type IntructionQueueProps = {
   state: IntructionQueueState;
   removeInstruction: (index: number) => void;
 }
+
+const ELEMENT_REMOVE_BUTTON = 'ELEMENT_REMOVE_BUTTON';
+const INSTRUCTION_QUEUE_OVERVIEW = 'INSTRUCTION_QUEUE_OVERVIEW';
 
 export const InstructionQueue: React.FC<IntructionQueueProps> = ({
   state,
@@ -36,10 +40,16 @@ export const InstructionQueue: React.FC<IntructionQueueProps> = ({
 
   return (
     <Container>
-      <HighlightTitle>FILA DE INSTRUÇÕES</HighlightTitle>
-      <QueueContainer>
+      <HighlightTitle data-tooltip-id={INSTRUCTION_QUEUE_OVERVIEW}>FILA DE INSTRUÇÕES</HighlightTitle>
+      <QueueContainer data-tooltip-id={ELEMENT_REMOVE_BUTTON}>
         {getInstructionsRow(14)}
       </QueueContainer>
+      <Tooltip id={INSTRUCTION_QUEUE_OVERVIEW}>
+        Use os espaços abaixo para criar o algoritmo de preparação do prato solicitado.
+      </Tooltip>
+      <Tooltip id={ELEMENT_REMOVE_BUTTON}>
+        Clique em qualquer instrução para remove-la.
+      </Tooltip>
     </Container>
   );
 }
