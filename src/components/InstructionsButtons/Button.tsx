@@ -19,6 +19,7 @@ type InstructionButtonProps = {
   instruction: Instructions;
   onPress: () => void;
   text?: string;
+  tooltipId?: string;
 };
 
 export const getInstructionIcon = (instruction: Instructions) => {
@@ -38,11 +39,15 @@ export const getInstructionIcon = (instruction: Instructions) => {
 export const InstructionButton: React.FC<InstructionButtonProps> = ({
   instruction,
   onPress,
-  text
+  text,
+  tooltipId
 }) => {
   return (
     <ButtonTextContainer>
-      <Button onClick={onPress}>
+      <Button
+        data-tooltip-id={tooltipId}
+        onClick={onPress}
+      >
         <ImageIcon
           src={getInstructionIcon(instruction)}
           height="40px"
