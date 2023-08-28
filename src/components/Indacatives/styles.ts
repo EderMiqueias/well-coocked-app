@@ -13,6 +13,7 @@ export const IndicativesRow = styled.div`
   display: flex;
   flex-direction: row;
   align-content: space-between;
+  justify-items: center;
 `;
 
 export const DishName = styled.p`
