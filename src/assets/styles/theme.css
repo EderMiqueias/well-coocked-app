@@ -1,0 +1,23 @@
+*:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
+:root {
+  --bg:            #0f1419;
+  --surface:       #1a212b;
+  --surface-2:     #232c38;
+  --border:        #2a3441;
+  --border-strong: #2f3a48;
+
+  --text:          #f1f5f9;
+  --text-muted:    #8b97a6;
+  --text-faint:    #64748b;
+
+  --brand:         #f59e0b;
+  --brand-hover:   #fbbf24;
+  --action:        #10b981;
+  --move:          #93c5fd;
+  --wait:          #a78bfa;
+  --danger:        #ef4444;
+}

@@ -1,3 +1,9 @@
+html, body, #root {
+  background-color: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
 .App {
   text-align: center;
 }
