@@ -37,12 +37,14 @@ import { LONG_TIMEOUT_MS, SHORT_TIMEOUT_MS, TIMEOUT_MS } from '@/constants';
 
 type NivelBaseProps = {
   getInitialState: () => GameSpaceState;
-  initialCharacterCoords: Coords
+  initialCharacterCoords: Coords;
+  instructionLimit: number;
 };
 
 const NivelBase = ({
   getInitialState,
-  initialCharacterCoords
+  initialCharacterCoords,
+  instructionLimit
 }: NivelBaseProps) => {
   const navigate = useNavigate();
   const [gameState, setGameState] =
@@ -69,6 +71,7 @@ const NivelBase = ({
   };
 
   const addInstruction = (instruction: Instructions) => {
+    if (instructionState.intructionQueue.length >= instructionLimit) return;
     const indexedInstruction = {
       index: instructionState.intructionQueue.length,
       instruction
@@ -89,8 +92,14 @@ const NivelBase = ({
       })
     );
 
+  const clearQueue = () =>
+    setInstructionState((oldValue) => ({
+      ...oldValue,
+      intructionQueue: []
+    }));
+
   const isLastInstruction = () =>
-    instructionState.intructionQueue.length === instructionState.currentIntructionIndex + 1
+    instructionState.intructionQueue.length === instructionState.currentIntructionIndex + 1;
 
   const runInstruction =
     (instruction?: IndexedInstruction): [number, boolean] => {
@@ -144,7 +153,9 @@ const NivelBase = ({
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mustRunNextInstruction])
+  }, [mustRunNextInstruction]);
+
+  const isFull = instructionState.intructionQueue.length >= instructionLimit;
 
   return (
     <NivelContainer>
@@ -168,13 +179,19 @@ const NivelBase = ({
       </FirstRowContainer>
       <OperacoesContainer>
         <InstructionQueue
-          removeInstruction={removeInstruction}
-          state={instructionState}
+          instructions={instructionState.intructionQueue}
+          limit={instructionLimit}
+          currentInstructionIndex={instructionState.currentIntructionIndex}
+          onRemove={removeInstruction}
+          onClear={clearQueue}
         />
-        <InstructionButtons addInstruction={addInstruction} />
+        <InstructionButtons
+          addInstruction={addInstruction}
+          disabled={isFull}
+        />
       </OperacoesContainer>
     </NivelContainer>
   );
-}
+};
 
 export { NivelBase };

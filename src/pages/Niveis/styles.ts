@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { MenuContainer } from '../Home/styles';
 
 export const Container = styled(MenuContainer)`
-  color: white;
+  color: var(--text);
   width: 70%;
 `;
 
@@ -14,11 +14,12 @@ export const NiveisContainer = styled.div`
 `;
 
 export const NivelContainer = styled.div`
-  display: block;
-  color: white;
-  max-height: 768px;
-  background-color: salmon;
-  width: 1024px;
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  background-color: var(--surface);
+  width: 100%;
+  max-width: 900px;
   border-radius: 15px;
 `;
 
@@ -26,18 +27,19 @@ export const FirstRowContainer = styled.div`
   flex-direction: row;
   display: flex;
   width: 100%;
-  height: 512px;
+  height: 448px;
 `;
-
 
 export const IndicativosContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 154px;
+  width: 180px;
   height: 100%;
-  background-color: #E9967A;
+  background-color: var(--surface-2);
+  border-top-right-radius: 15px;
   justify-content: space-between;
+  padding: 12px 0;
 `;
 
 export const RunButtonContainer = styled.div`
@@ -46,11 +48,12 @@ export const RunButtonContainer = styled.div`
 
 export const OperacoesContainer = styled.div`
   width: 100%;
-  height: 256px;
-  background-color: #E9967A;
+  min-height: 180px;
+  background-color: var(--surface-2);
   display: flex;
+  flex-direction: row;
   align-self: flex-end;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
+  border-top: 1px solid var(--border);
 `;
-
