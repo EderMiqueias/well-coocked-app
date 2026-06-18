@@ -17,11 +17,12 @@ export const BackIconComponent: React.FC<ButtonProps> = ({
     <Container>
       <Anchor
         url={backTo}
+        aria-label="Voltar"
       >
         <ImageIcon
           src={BackIcon}
-          width="50px"
-          height="50px"
+          width="40px"
+          height="40px"
         />
       </Anchor>
     </Container>

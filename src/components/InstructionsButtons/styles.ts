@@ -1,11 +1,36 @@
 import styled from "styled-components";
 
-export const Button = styled.button`
+type ButtonVariant = 'move' | 'brand' | 'wait';
+
+interface ButtonStyledProps {
+  variant?: ButtonVariant;
+}
+
+const getButtonColor = (variant?: ButtonVariant): string => {
+  switch (variant) {
+    case 'brand': return 'var(--brand)';
+    case 'wait':  return 'var(--wait)';
+    default:      return 'var(--move)';
+  }
+};
+
+export const Button = styled.button<ButtonStyledProps>`
   width: 50px;
   height: 50px;
-  background: #6495ED;
-  border: 1px solid #4D4D4D;
+  background: ${({ variant }) => getButtonColor(variant)};
+  border: 1px solid var(--border);
   border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover { opacity: 0.85; }
+  &:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  &:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 `;
 
 export const ButtonsContainer = styled.div`
@@ -24,6 +49,7 @@ export const MovementButtonsContainer = styled.div`
 `;
 
 export const Container = styled.div`
+  display: flex;
   flex-direction: column;
   margin-left: 20px;
 `;
@@ -36,22 +62,25 @@ export const Row = styled.div`
 
 export const ActionButtonsContainer = styled.div`
   display: flex;
-  /* width: 180px; */
+  flex-direction: column;
   height: 100%;
   margin-left: 12px;
-  align-content: center;
+  align-items: center;
   justify-content: space-between;
 `;
 
 export const ButtonTextContainer = styled.div`
+  display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const ButtonText = styled.p`
   font-style: normal;
   font-weight: 700;
-  font-size: 16px;
-  line-height: 19px;
-  color: #272727;
-  margin-left: 12px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--text-muted);
+  margin: 2px 0 0;
+  text-align: center;
 `;

@@ -20,8 +20,8 @@ const animation = (props: CheffDroidProps) => keyframes`
 export const Container = styled.div<CheffDroidProps>`
   position: absolute;
   z-index: 10;
-  height: 100px;
-  width: 100px;
+  height: 112px;
+  width: 112px;
   left: ${({final}) => final.left}px;
   top: ${({final}) => final.top}px;
   animation-name: ${(props) => animation(props)};
@@ -32,6 +32,9 @@ export const CheffDroidContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
 `;
 
 export type CheffDroidSpriteMode = 'normal' | 'sleeping' | 'side';
@@ -65,7 +68,7 @@ export const ImageContainer = styled.div`
 export const TempContainer = styled(ImageContainer)<{hidden: boolean}>`
   display: flex;
   top: 0px;
-  left: 75px;
+  left: 68px;
   opacity: ${({hidden}) => hidden ? '100' : '0'};
   transition: opacity 1s ease-in;
 `;

@@ -1,15 +1,16 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 320px;
+  width: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
-  color: #000;
+  background-color: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
   text-align: center;
-  border-radius: 20px;
-  padding: 30px 30px 70px;
+  border-radius: 16px;
+  padding: 30px 30px 40px;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -17,31 +18,35 @@ export const Container = styled.div`
   z-index: 12;
 `;
 
-export const Button = styled.button<{ color: string }> `
+export const Button = styled.button<{ color: string }>`
   background-color: ${({ color }) => color};
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   width: 200px;
   padding: 14px;
   font-size: 16px;
-  color: white;
-  box-shadow: 0px 6px 18px -5px rgba(237, 103, 85, 1);
+  font-weight: 700;
+  color: #0a1a12;
+  cursor: pointer;
   margin-top: 28px;
+  &:hover { opacity: 0.9; }
+  &:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 `;
 
 export const Text = styled.p`
   margin-bottom: 12px;
   font-size: 18px;
   font-weight: 700;
+  color: var(--text);
 `;
 
 export const TipText = styled.p`
   font-weight: 700;
-  color: gray;
-  font-size: 18px;
+  color: var(--text-muted);
+  font-size: 16px;
 `;
 
 export const Img = styled.img`
-  width: 82px;
+  width: 72px;
   margin-bottom: 15px;
 `;

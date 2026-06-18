@@ -13,6 +13,7 @@ import { Tooltip } from "../Tooltip";
 
 type InstructionsButtonProps = {
   addInstruction: (instruction: Instructions) => void;
+  disabled?: boolean;
 };
 
 const INTRUCTIONS_OVERVIEW = 'INTRUCTIONS_OVERVIEW';
@@ -24,7 +25,8 @@ const GRAB_RELEASE_BUTTON = 'GRAB_RELEASE_BUTTON';
 const WAIT_BUTTON = 'WAIT_BUTTON';
 
 export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
-  addInstruction
+  addInstruction,
+  disabled = false,
 }) => {
   return (
     <Container>
@@ -35,23 +37,27 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
             tooltipId={TOP_BUTTON}
             instruction={Instructions.top}
             onPress={() => addInstruction(Instructions.top)}
+            disabled={disabled}
           />
           <MovementButtonsContainer>
             <InstructionButton
               tooltipId={LEFT_BUTTON}
               instruction={Instructions.left}
               onPress={() => addInstruction(Instructions.left)}
+              disabled={disabled}
             />
             <InstructionButton
               tooltipId={RIGHT_BUTTON}
               instruction={Instructions.right}
               onPress={() => addInstruction(Instructions.right)}
+              disabled={disabled}
             />
           </MovementButtonsContainer>
           <InstructionButton
             tooltipId={BOTTOM_BUTTON}
             instruction={Instructions.bottom}
             onPress={() => addInstruction(Instructions.bottom)}
+            disabled={disabled}
           />
         </ButtonsContainer>
 
@@ -60,18 +66,14 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
             tooltipId={GRAB_RELEASE_BUTTON}
             instruction={Instructions.grabRelease}
             onPress={() => addInstruction(Instructions.grabRelease)}
-            text="Pegar/Soltar"
+            disabled={disabled}
           />
-          {/* <InstructionButton
-            instruction={Instructions.interact}
-            onPress={() => addInstruction(Instructions.interact)}
-            text="Interagir"
-          /> */}
           <InstructionButton
             tooltipId={WAIT_BUTTON}
             instruction={Instructions.wait}
             onPress={() => addInstruction(Instructions.wait)}
             text="Aguardar"
+            disabled={disabled}
           />
         </ActionButtonsContainer>
       </Row>

@@ -1,37 +1,44 @@
-import React from "react";
+import React from 'react';
 
-import { Instructions } from "@/types";
-import { InstructionContainer, SVGItem, VoidInstruction } from "./styles";
-import { ArrowRightDirection } from "@/assets";
-import { InstructionButton } from "../InstructionsButtons/Button";
+import { ImageIcon } from '@/common';
+import { Instructions } from '@/types';
+import { getInstructionIcon } from '../InstructionsButtons/Button';
+import { StepBlock, StepNumber, RemoveButton } from './styles';
 
-type InstructionProps = {
-  index: number;
-  onClick: () => void;
-  instruction?: Instructions;
-  isCurrentInstruction?: boolean;
-  showRightArrow?: boolean;
+const INSTRUCTION_COLOR: Record<Instructions, string> = {
+  [Instructions.top]:         'var(--move)',
+  [Instructions.bottom]:      'var(--move)',
+  [Instructions.left]:        'var(--move)',
+  [Instructions.right]:       'var(--move)',
+  [Instructions.grabRelease]: 'var(--brand)',
+  [Instructions.interact]:    'var(--brand)',
+  [Instructions.wait]:        'var(--wait)',
+};
+
+interface InstructionStepProps {
+  stepNumber: number;
+  instruction: Instructions;
+  isActive: boolean;
+  onRemove: () => void;
 }
 
-export const InstructionQueueElement: React.FC<InstructionProps> = ({
-  index,
-  onClick,
+export const InstructionStep: React.FC<InstructionStepProps> = ({
+  stepNumber,
   instruction,
-  isCurrentInstruction,
-  showRightArrow
+  isActive,
+  onRemove,
 }) => {
+  const color = INSTRUCTION_COLOR[instruction];
   return (
-    <>
-      <InstructionContainer onClick={onClick} highlight={isCurrentInstruction}>
-        {instruction ? (
-          <InstructionButton instruction={instruction} onPress={() => {}} />
-        ) : (
-          <VoidInstruction key={index} />
-        )}
-      </InstructionContainer>
-      {showRightArrow && (
-        <SVGItem src={ArrowRightDirection} />
-      )}
-    </>
+    <StepBlock color={color} isActive={isActive}>
+      <StepNumber>{stepNumber}</StepNumber>
+      <ImageIcon src={getInstructionIcon(instruction)} width="22px" height="22px" />
+      <RemoveButton
+        onClick={(e) => { e.stopPropagation(); onRemove(); }}
+        aria-label={`Remover instrução ${stepNumber}`}
+      >
+        ×
+      </RemoveButton>
+    </StepBlock>
   );
-}
+};

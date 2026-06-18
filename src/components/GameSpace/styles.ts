@@ -2,11 +2,12 @@ import styled from 'styled-components';
 
 export const JogoContainer = styled.div`
   position: relative;
-  max-width: 85%;
-  height: 100%;
+  width: 448px;
+  height: 448px;
   border-top-left-radius: 15px;
   display: flex;
   flex-wrap: wrap;
+  flex-shrink: 0;
 `;
 
 interface BlockProps {
@@ -22,7 +23,8 @@ export const BlockContainer = styled.div<BlockProps>`
   min-height: ${({height}) => height}px;
   max-width: ${({width}) => width}px;
   max-height: ${({height}) => height}px;
-  background-color: ${({colorFase}) => colorFase ? ' #f5cba7 ' : ' #fae5d3 ' };
+  background-color: ${({colorFase}) => colorFase ? 'var(--surface-2)' : 'var(--surface)'};
+  border: 1px solid var(--border);
 `;
 
 export const ItemsContainer = styled.div`

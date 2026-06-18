@@ -31,46 +31,46 @@ export const Modal: React.FC<ModalProps> = ({
   const backToNiveis = () => navigate('/niveis');
   const allContents: Record<GameStates, content> = {
     completed: {
-      text: 'Parabéns! Cheff Droid fez a receita!',
+      text: 'Receita pronta! Cheff Droid fez a receita!',
       icon: SuccessIcon,
       buttonText: 'Continuar',
-      buttonColor: '#55ed6c',
+      buttonColor: 'var(--action)',
       buttonAction: backToNiveis
     },
     droidHitItsHead: {
       text: 'Essa não! Cheff Droid bateu com tudo em uma parede e não consegue continuar!',
       icon: CriticalIcon,
-      buttonText: 'TentarNovamente',
-      buttonColor: '#ed6755',
+      buttonText: 'Tentar Novamente',
+      buttonColor: 'var(--danger)',
       buttonAction: onClick
     },
     caughtPanInUse: {
       text: 'Ops! Cheff Droid removeu um ingrediente que ainda não estava cozido.',
       icon: CriticalIcon,
-      buttonText: 'TentarNovamente',
-      buttonColor: '#ed6755',
+      buttonText: 'Tentar Novamente',
+      buttonColor: 'var(--danger)',
       buttonAction: onClick
     },
     rowFoodOnDish: {
       text: 'Prefere mal passado? Cheff Droid usou um ingrediente que ainda não estava cozido.',
       icon: CriticalIcon,
-      buttonText: 'TentarNovamente',
-      buttonColor: '#ed6755',
+      buttonText: 'Tentar Novamente',
+      buttonColor: 'var(--danger)',
       buttonAction: onClick
     },
     fail: {
-      text: 'Hmm... O que estavamos fazendo mesmo???',
+      text: 'Hmm... O que estávamos fazendo mesmo???',
       subText: 'Cheff Droid deve colocar os ingredientes cozidos em algum prato.',
       icon: InterrogationIcon,
-      buttonText: 'TentarNovamente',
-      buttonColor: '#ed6755',
+      buttonText: 'Tentar Novamente',
+      buttonColor: 'var(--danger)',
       buttonAction: onClick
     },
     timeOver: {
       text: 'Muito devagar! Precisamos ser mais eficientes.',
       icon: LateIcon,
-      buttonText: 'TentarNovamente',
-      buttonColor: '#ed6755',
+      buttonText: 'Tentar Novamente',
+      buttonColor: 'var(--danger)',
       buttonAction: onClick
     },
     started: {

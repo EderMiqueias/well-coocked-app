@@ -20,7 +20,7 @@ export const Content = styled.p``;
 export const HighlightTitle = styled.h2`
   font-style: normal;
   font-weight: 400;
-  font-size: 28px;
-  color: #4D4D4D;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  font-size: 18px;
+  color: var(--text-muted);
+  margin: 0;
 `;

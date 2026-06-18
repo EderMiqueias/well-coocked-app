@@ -3,31 +3,47 @@ import styled from 'styled-components';
 export const CardBase = styled.div`
   font-size: 1em;
   margin: 1em;
-  padding: 0.25em 1em;
-  border-radius: 15px;
+  padding: 1em;
+  border-radius: 12px;
 `;
 
 export const NivelCard = styled(CardBase)`
-  box-shadow:
-    rgba(222, 49, 99, 0.4) 5px 5px,
-    rgba(222, 49, 99, 0.3) 10px 10px,
-    rgba(222, 49, 99, 0.2) 15px 15px,
-    rgba(222, 49, 99, 0.1) 20px 20px,
-    rgba(222, 49, 99, 0.05) 25px 25px;
-  background-color: #c82c59;
-  border: 3px solid rgba(200, 44, 89, 0.4);
-  width: 200px;
-  height: 150px;
+  background-color: var(--surface-2);
+  border: 1px solid var(--border);
+  width: 180px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  transition: border-color 0.15s ease;
+  &:hover {
+    border-color: var(--border-strong);
+  }
 `;
 
 export const TextNivelName = styled.h2`
-  color: white;
-  font-size: 24px;
+  color: var(--text);
+  font-size: 20px;
+  margin: 0;
 `;
 
 export const NivelButton = styled.button`
-  color: rgb(200, 44, 89);
-  font-size: 24px;
-  padding: 12px;
-  width: 150px;
+  background-color: var(--brand);
+  color: #1a1207;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 8px 0;
+  width: 140px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  &:disabled {
+    background-color: var(--surface);
+    color: var(--text-faint);
+    border: 1px solid var(--border);
+    cursor: not-allowed;
+  }
+  &:hover:not(:disabled) { background-color: var(--brand-hover); }
+  &:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
 `;
