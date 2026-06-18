@@ -48,6 +48,7 @@ export const Nivel3 = () => {
     <NivelBase
       getInitialState={getInitialState}
       initialCharacterCoords={initialCoords}
+      instructionLimit={14}
     />
   );
 }
