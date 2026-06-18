@@ -15,7 +15,7 @@ export const GameSpace: React.FC<GameSpaceProps> = ({
   children
 }) => {
   const getBlockRow = (coordY: number, colorFase: boolean, items: number) => {
-    let atualColorFase = colorFase;
+    let currentColorFase = colorFase;
     const blockRow: React.ReactNode[] = [];
 
     for (let i = 1; i <= items; i++) {
@@ -26,21 +26,21 @@ export const GameSpace: React.FC<GameSpaceProps> = ({
             x: i
           }}
           state={state[coordY][i]}
-          colorFase={atualColorFase}
+          colorFase={currentColorFase}
         />
       );
-      atualColorFase = !atualColorFase;
+      currentColorFase = !currentColorFase;
     }
     return blockRow;
   };
 
   const getBlockRows = () => {
-    let atualColorFase = true;
+    let currentColorFase = true;
     const blockRows: React.ReactNode[] = [];
 
     for (let i = 1; i <= 4; i++) {
-      blockRows.push(getBlockRow(i, atualColorFase, 4));
-      atualColorFase = !atualColorFase;
+      blockRows.push(getBlockRow(i, currentColorFase, 4));
+      currentColorFase = !currentColorFase;
     }
     return blockRows;
   };
