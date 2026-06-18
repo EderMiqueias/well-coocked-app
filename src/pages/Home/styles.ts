@@ -3,20 +3,26 @@ import styled from 'styled-components';
 export const MenuContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #E9967A;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
   padding: 5%;
-  min-height: 300px;
-  min-width: 400px;
-  justify-items: center;
-  border-radius: 24px;
-  color: white;
+  min-height: 280px;
+  min-width: 320px;
+  align-items: center;
+  border-radius: 16px;
+  color: var(--text);
 `;
 
 export const MenuTitle = styled.h1`
-    color: white;
+  color: var(--text);
+  margin-bottom: 24px;
 `;
 
 export const Row = styled.div`
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--bg);
 `;

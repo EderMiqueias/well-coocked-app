@@ -7,11 +7,11 @@ import { Android1, Android2 } from '@/assets';
 const HomePage = () => {
     return (
         <Row>
-            <ImageIcon width='500px' height='500px' src={Android1} />
+            <ImageIcon width='400px' height='400px' src={Android1} />
             <MenuContainer>
                 <MenuTitle>Well Coocked!</MenuTitle>
-                <Anchor url="/niveis" >
-                    <Button text='Jogar' type='menu' />
+                <Anchor url="/niveis">
+                    <Button text='Jogar' type='primary' />
                 </Anchor>
                 <Anchor url="/tutorial">
                     <Button text='Tutorial' type='menu' />
@@ -20,9 +20,9 @@ const HomePage = () => {
                     <Button text='Sobre o jogo' type='menu' />
                 </Anchor>
             </MenuContainer>
-            <ImageIcon width='500px' height='500px' src={Android2} />
+            <ImageIcon width='400px' height='400px' src={Android2} />
         </Row>
     );
-}
+};
 
 export { HomePage };
