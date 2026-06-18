@@ -1,2 +1,2 @@
-export const BLOCK_WIDTH = 216;
-export const BLOCK_HEIGHT = 128;
+export const BLOCK_WIDTH = 112;
+export const BLOCK_HEIGHT = 112;
