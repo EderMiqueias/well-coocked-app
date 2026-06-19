@@ -38,8 +38,9 @@ export const GameSpace: React.FC<GameSpaceProps> = ({
     let currentColorFase = true;
     const blockRows: React.ReactNode[] = [];
 
-    for (let i = 1; i <= 4; i++) {
-      blockRows.push(getBlockRow(i, currentColorFase, 4));
+    const row_size = 4;
+    for (let i = 1; i <= row_size; i++) {
+      blockRows.push(getBlockRow(i, currentColorFase, row_size));
       currentColorFase = !currentColorFase;
     }
     return blockRows;
