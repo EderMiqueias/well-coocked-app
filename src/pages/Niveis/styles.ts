@@ -26,8 +26,9 @@ export const NivelContainer = styled.div`
 export const FirstRowContainer = styled.div`
   flex-direction: row;
   display: flex;
-  width: 100%;
+  /* width: 100%; */
   height: 448px;
+  justify-content: space-between;
 `;
 
 export const IndicativosContainer = styled.div`
@@ -35,11 +36,11 @@ export const IndicativosContainer = styled.div`
   flex-direction: column;
   align-items: center;
   width: 180px;
-  height: 100%;
+  /* height: 100%; */
   background-color: var(--surface-2);
   border-top-right-radius: 15px;
   justify-content: space-between;
-  padding: 12px 0;
+  padding: 0 0 12px;
 `;
 
 export const RunButtonContainer = styled.div`
