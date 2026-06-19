@@ -37,10 +37,10 @@ export const Indicatives: React.FC<IndicativesProps> = ({
   
   return (
     <Container>
-      <TimeContainer data-tooltip-id={TIME_INDICATIVE_ID}>
+      {/* <TimeContainer data-tooltip-id={TIME_INDICATIVE_ID}>
         <ImageIcon height="auto" width="40px" src={HourGlass} />
         <Time>{secondsLeft} S</Time>
-      </TimeContainer>
+      </TimeContainer> */}
       <DishName>{dish}</DishName>
       <ImageIcon
         height="auto"
