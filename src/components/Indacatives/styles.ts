@@ -21,6 +21,7 @@ export const DishName = styled.p`
   font-weight: 700;
   font-size: 24px;
   text-transform: uppercase;
+  color: var(--text-muted);
 `;
 
 export const TimeContainer = styled(IndicativesRow)`
