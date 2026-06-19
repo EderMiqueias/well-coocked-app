@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 
 import { IndexedInstruction } from '@/types';
-import { HighlightTitle } from '@/common';
+import { HighlightTitle, Row } from '@/common';
 import { Tooltip } from '../Tooltip';
 
 import { BudgetMeter } from './BudgetMeter';
@@ -48,12 +48,14 @@ export const InstructionQueue: React.FC<InstructionQueueProps> = ({
     <QueueWrapper>
       <QueueHeader>
         <HighlightTitle data-tooltip-id={QUEUE_OVERVIEW}>FILA DE INSTRUÇÕES</HighlightTitle>
-        <BudgetMeter used={instructions.length} limit={limit} />
-        {instructions.length > 0 && (
-          <ClearButton onClick={onClear} aria-label="Limpar fila de instruções">
-            Limpar
-          </ClearButton>
-        )}
+        <Row>
+          <BudgetMeter used={instructions.length} limit={limit} />
+          {instructions.length > 0 && (
+            <ClearButton onClick={onClear} aria-label="Limpar fila de instruções">
+              Limpar
+            </ClearButton>
+          )}
+        </Row>
         {limit > 50 && (
           <>
             <NavButton

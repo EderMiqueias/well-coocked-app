@@ -5,15 +5,16 @@ import styled from 'styled-components';
 export const QueueWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   gap: 6px;
   padding: 8px 12px;
 `;
 
 export const QueueHeader = styled.div`
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 12px;
   flex-wrap: wrap;
 `;
@@ -124,6 +125,7 @@ export const FreeCountLabel = styled.span`
 /* ── Action buttons ───────────────────────────────────────────── */
 
 export const ClearButton = styled.button`
+  margin-left: 12px;
   background: transparent;
   border: 1px solid var(--border);
   border-radius: 6px;
