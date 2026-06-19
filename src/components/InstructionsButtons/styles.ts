@@ -39,6 +39,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-end;
 `;
 
 export const MovementButtonsContainer = styled.div`
@@ -74,6 +75,7 @@ export const ButtonTextContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 1px;
 `;
 
 export const ButtonText = styled.p`

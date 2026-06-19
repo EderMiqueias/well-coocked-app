@@ -18,6 +18,7 @@ export const Subtitle = styled.h3``;
 export const Content = styled.p``;
 
 export const HighlightTitle = styled.h2`
+  align-self: flex-start;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;

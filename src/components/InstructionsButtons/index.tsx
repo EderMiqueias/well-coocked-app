@@ -60,7 +60,6 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
             />
           </MovementButtonsContainer>
         </ButtonsContainer>
-
         <ActionButtonsContainer>
           <InstructionButton
             tooltipId={GRAB_RELEASE_BUTTON}
