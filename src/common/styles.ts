@@ -24,3 +24,8 @@ export const HighlightTitle = styled.h2`
   color: var(--text-muted);
   margin: 0;
 `;
+
+export const Row = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
