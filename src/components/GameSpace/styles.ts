@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const JogoContainer = styled.div`
   position: relative;
-  width: 448px;
-  height: 448px;
+  max-width: 455px;
+  max-height: 455px;
   border-top-left-radius: 15px;
   display: flex;
   flex-wrap: wrap;
