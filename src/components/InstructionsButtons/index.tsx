@@ -47,18 +47,18 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
               disabled={disabled}
             />
             <InstructionButton
+              tooltipId={BOTTOM_BUTTON}
+              instruction={Instructions.bottom}
+              onPress={() => addInstruction(Instructions.bottom)}
+              disabled={disabled}
+            />
+            <InstructionButton
               tooltipId={RIGHT_BUTTON}
               instruction={Instructions.right}
               onPress={() => addInstruction(Instructions.right)}
               disabled={disabled}
             />
           </MovementButtonsContainer>
-          <InstructionButton
-            tooltipId={BOTTOM_BUTTON}
-            instruction={Instructions.bottom}
-            onPress={() => addInstruction(Instructions.bottom)}
-            disabled={disabled}
-          />
         </ButtonsContainer>
 
         <ActionButtonsContainer>
@@ -67,6 +67,7 @@ export const InstructionButtons: React.FC<InstructionsButtonProps> = ({
             instruction={Instructions.grabRelease}
             onPress={() => addInstruction(Instructions.grabRelease)}
             disabled={disabled}
+            text="Pegar/Soltar"
           />
           <InstructionButton
             tooltipId={WAIT_BUTTON}

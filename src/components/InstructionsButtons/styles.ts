@@ -62,9 +62,10 @@ export const Row = styled.div`
 
 export const ActionButtonsContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   height: 100%;
-  margin-left: 12px;
+  min-width: 140px;
+  margin: 0 12px;
   align-items: center;
   justify-content: space-between;
 `;
